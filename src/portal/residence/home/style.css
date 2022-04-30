@@ -1,0 +1,23 @@
+.quick-link-card {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.quick-link-card-details {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 2em;
+}
+
+.quick-link-card-title {
+  color: black;
+  font-weight: 600;
+}
+
+.quick-link-card-sub-title {
+  color: black;
+  font-weight: 300;
+  opacity: 0.5;
+}

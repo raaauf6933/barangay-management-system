@@ -1,0 +1,36 @@
+.login {
+  height: 100vh;
+  background: #eff5f8 !important;
+}
+
+.brgy-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 600px) {
+  .brgy-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.brgy-name {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.brgy-system {
+  font-size: 20px;
+}

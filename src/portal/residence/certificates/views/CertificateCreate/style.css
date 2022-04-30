@@ -1,0 +1,12 @@
+.action-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-textarea {
+  margin-bottom: 2em;
+}
+
+.form-textarea textarea {
+  resize: none;
+}
