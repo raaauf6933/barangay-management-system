@@ -1,10 +1,9 @@
-import React from "react";
 import AppLayout from "./components/AppLayout";
 import "./style.css";
 import HomeView from "./views/Home";
 import { Routes as Switch, Route } from "react-router-dom";
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
     <AppLayout>
       <Routes />
@@ -12,7 +11,7 @@ const Home = () => {
   );
 };
 
-const Routes = () => {
+const Routes = (): JSX.Element => {
   return (
     <Switch>
       <Route path="/" element={<HomeView />} />

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Layout, Button, Grid } from "antd";
-import { createMenuStructure } from "./../menuStructure";
+import { createMenuStructure } from "../menuStructure";
 import Menu from "./components/Menu";
 import Drawer from "./components/Drawer";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { MenuFoldOutlined } from "@ant-design/icons";
 const { useBreakpoint } = Grid;
 const { Header } = Layout;
 
-const AppHeader = () => {
+const AppHeader = (): JSX.Element => {
   const navigate = useNavigate();
   const menuStructure = createMenuStructure();
   const [openDrawer, setOpenDrawer] = useState(false);

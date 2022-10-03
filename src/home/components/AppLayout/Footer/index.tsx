@@ -1,9 +1,8 @@
-import React from "react";
 import { Layout, Row, Col } from "antd";
 import { EnvironmentFilled, PhoneFilled } from "@ant-design/icons";
 const { Footer } = Layout;
 
-const FooterComponent = () => {
+const FooterComponent = (): JSX.Element => {
   return (
     <Footer className="footer">
       <Row>

@@ -2,7 +2,15 @@ import React from "react";
 import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 
-const MenuComponent = ({ menuStructure, navigate }) => {
+interface MenuComponentProps {
+  menuStructure: any;
+  navigate: any;
+}
+
+const MenuComponent: React.FC<MenuComponentProps> = ({
+  menuStructure,
+  navigate,
+}) => {
   return (
     <>
       <Menu
@@ -13,12 +21,12 @@ const MenuComponent = ({ menuStructure, navigate }) => {
         }}
       >
         {menuStructure
-          ? menuStructure.map((menu, index) => {
+          ? menuStructure.map((menu: any, index: number) => {
               return menu.position === "left" ? (
                 menu.children ? (
                   <>
                     <SubMenu key={index} title={<b>{menu.label}</b>}>
-                      {menu.children.map((subMenu, index) => {
+                      {menu.children.map((subMenu: any, index: number) => {
                         return (
                           <Menu.Item key={index}>{subMenu.label} </Menu.Item>
                         );
@@ -44,7 +52,7 @@ const MenuComponent = ({ menuStructure, navigate }) => {
         }}
       >
         {menuStructure
-          ? menuStructure.map((menu, index) => {
+          ? menuStructure.map((menu: any, index: number) => {
               return menu.position === "right" ? (
                 <Menu.Item key={index} onClick={() => navigate(menu.url)}>
                   <b>{menu.label}</b>

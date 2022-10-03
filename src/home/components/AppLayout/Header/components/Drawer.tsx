@@ -1,14 +1,21 @@
 import React from "react";
 import { Drawer, Menu } from "antd";
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+// import {
+//   AppstoreOutlined,
+//   MailOutlined,
+//   SettingOutlined,
+// } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 
-const DrawerComponent = ({
+interface DrawerComponentProps {
+  openDrawer: any;
+  setOpenDrawer: any;
+  menuStructure: any;
+  navigate: any;
+}
+
+const DrawerComponent: React.FC<DrawerComponentProps> = ({
   openDrawer,
   setOpenDrawer,
   menuStructure,
@@ -30,12 +37,12 @@ const DrawerComponent = ({
         }}
       >
         {menuStructure
-          ? menuStructure.map((menu, index) => {
+          ? menuStructure.map((menu: any, index: any) => {
               if (menu.children) {
                 return (
                   <>
                     <SubMenu key={index} title={<b>{menu.label}</b>}>
-                      {menu.children.map((subMenu, index) => {
+                      {menu.children.map((subMenu: any, index: any) => {
                         return (
                           <Menu.Item key={index}>{subMenu.label} </Menu.Item>
                         );

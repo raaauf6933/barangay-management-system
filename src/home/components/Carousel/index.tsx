@@ -2,7 +2,11 @@ import React from "react";
 import { Carousel, Image } from "antd";
 import { images } from "./images";
 
-const CarouselComponent = () => {
+interface CarouselComponentProps {
+  images: number[];
+}
+
+const CarouselComponent: React.FC<CarouselComponentProps> = () => {
   const contentStyle = {
     // height: "400px",
     // color: "#fff",
@@ -14,8 +18,8 @@ const CarouselComponent = () => {
 
   return (
     <Carousel autoplay>
-      {images.map((item) => (
-        <div style={contentStyle}>
+      {images.map((item, index) => (
+        <div key={index} style={contentStyle}>
           <Image src={item.src} />
         </div>
       ))}

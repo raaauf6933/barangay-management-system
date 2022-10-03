@@ -5,7 +5,11 @@ import Footer from "./Footer";
 import "./style.css";
 const { Content } = Layout;
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => {
   return (
     <>
       <Layout>
