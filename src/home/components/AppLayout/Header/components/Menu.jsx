@@ -20,7 +20,12 @@ const MenuComponent = ({ menuStructure, navigate }) => {
                     <SubMenu key={index} title={<b>{menu.label}</b>}>
                       {menu.children.map((subMenu, index) => {
                         return (
-                          <Menu.Item key={index}>{subMenu.label} </Menu.Item>
+                          <Menu.Item
+                            key={index}
+                            onClick={() => navigate(subMenu.url)}
+                          >
+                            {subMenu.label}{" "}
+                          </Menu.Item>
                         );
                       })}
                     </SubMenu>
@@ -34,6 +39,8 @@ const MenuComponent = ({ menuStructure, navigate }) => {
             })
           : null}
       </Menu>
+
+      {/*  portal tab */}
       <Menu
         theme="dark"
         mode="horizontal"
