@@ -4,11 +4,7 @@ import { Row, Col } from "antd";
 import logo from "./../../../assets/barangay_logo1.png";
 const { Meta } = Card;
 
-interface AnnouncementProps {
-  title: string;
-}
-
-const Announcement: React.FC<AnnouncementProps> = (props) => {
+const Announcement = (props) => {
   const { title } = props;
 
   return (

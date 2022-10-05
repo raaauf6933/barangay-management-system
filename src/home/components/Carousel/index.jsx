@@ -2,11 +2,7 @@ import React from "react";
 import { Carousel, Image } from "antd";
 import { images } from "./images";
 
-interface CarouselComponentProps {
-  images: number[];
-}
-
-const CarouselComponent: React.FC<CarouselComponentProps> = () => {
+const CarouselComponent = () => {
   const contentStyle = {
     // height: "400px",
     // color: "#fff",

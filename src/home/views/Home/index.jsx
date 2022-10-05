@@ -1,10 +1,10 @@
 import React from "react";
-import Carousel from "../../components/Carousel";
-import AppContainer from "../../components/container";
+import Carousel from "./../../components/Carousel";
+import AppContainer from "./../../components/container";
 import Announcement from "../../components/Announcement";
 // import { Row, Col } from "antd";
 
-const HomeView: React.FC = () => {
+const HomeView = () => {
   return (
     <>
       <Carousel images={[1, 2, 3, 4, 5]} />

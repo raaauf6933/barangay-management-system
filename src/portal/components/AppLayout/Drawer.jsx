@@ -8,19 +8,17 @@ import { Drawer, Menu } from "antd";
 
 const { SubMenu } = Menu;
 
-interface DrawerComponentProps {
-  openDrawer: any;
-  setOpenDrawer: any;
-  menuStructure: any;
-  navigate: any;
-}
-
-const DrawerComponent: React.FC<DrawerComponentProps> = ({
+const DrawerComponent = ({
   openDrawer,
   setOpenDrawer,
   menuStructure,
   navigate,
 }) => {
+  const onNavigate = (url) => {
+    navigate(url);
+    setOpenDrawer(false);
+  };
+
   return (
     <Drawer
       placement="left"
@@ -37,14 +35,19 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
         }}
       >
         {menuStructure
-          ? menuStructure.map((menu: any, index: any) => {
+          ? menuStructure.map((menu, index) => {
               if (menu.children) {
                 return (
                   <>
                     <SubMenu key={index} title={<b>{menu.label}</b>}>
-                      {menu.children.map((subMenu: any, index: any) => {
+                      {menu.children.map((subMenu, index) => {
                         return (
-                          <Menu.Item key={index}>{subMenu.label} </Menu.Item>
+                          <Menu.Item
+                            key={index}
+                            onClick={() => onNavigate(menu.url)}
+                          >
+                            {subMenu.label}{" "}
+                          </Menu.Item>
                         );
                       })}
                     </SubMenu>
@@ -52,7 +55,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
                 );
               } else {
                 return (
-                  <Menu.Item key={index} onClick={() => navigate(menu.url)}>
+                  <Menu.Item key={index} onClick={() => onNavigate(menu.url)}>
                     <b>{menu.label}</b>
                   </Menu.Item>
                 );

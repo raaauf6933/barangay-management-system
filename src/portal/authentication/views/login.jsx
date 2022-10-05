@@ -1,11 +1,15 @@
 import React from "react";
 import { Card } from "antd";
-import { Typography, Divider, Row, Col } from "antd";
+import {
+  // Typography,
+  Divider,
+  // Row, Col
+} from "antd";
 import Form from "../components/Form";
 import logo from "./../../../assets/barangay_logo1.png";
 import "./style.css";
 
-const { Title, Text } = Typography;
+// const { Title, Text } = Typography;
 
 const Login = () => {
   return (
