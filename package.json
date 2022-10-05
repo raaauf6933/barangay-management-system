@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "6.4.3",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.19.4",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
+    "eslint": "^8.24.0",
     "qs": "^6.9.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,10 +23,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +48,11 @@
     ]
   },
   "devDependencies": {
-    "@types/react-inlinesvg": "^1.0.0"
-  }
+    "@types/react-inlinesvg": "^1.0.0",
+    "eslint-plugin-react": "^7.31.8"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/raaauf6933/barangay-management-system.git",
+  "author": "raaauf6933 <adimaampao@stratpoint.com>",
+  "license": "MIT"
 }

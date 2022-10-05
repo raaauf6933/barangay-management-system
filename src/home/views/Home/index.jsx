@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "./../../components/Carousel";
 import AppContainer from "./../../components/container";
 import Announcement from "../../components/Announcement";
-import { Row, Col } from "antd";
+// import { Row, Col } from "antd";
 
 const HomeView = () => {
   return (

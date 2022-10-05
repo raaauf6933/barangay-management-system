@@ -1,10 +1,10 @@
 import React from "react";
 import { Drawer, Menu } from "antd";
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+// import {
+//   AppstoreOutlined,
+//   MailOutlined,
+//   SettingOutlined,
+// } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 

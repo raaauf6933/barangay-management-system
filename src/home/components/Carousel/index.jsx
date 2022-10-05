@@ -14,8 +14,8 @@ const CarouselComponent = () => {
 
   return (
     <Carousel autoplay>
-      {images.map((item) => (
-        <div style={contentStyle}>
+      {images.map((item, index) => (
+        <div key={index} style={contentStyle}>
           <Image src={item.src} />
         </div>
       ))}
