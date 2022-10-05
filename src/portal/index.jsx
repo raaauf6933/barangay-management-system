@@ -1,3 +1,4 @@
+import React from "react";
 import AuthRouter from "./authentication";
 import AdminRouter from "./admin";
 import ResidenceRouter from "./residence";
@@ -43,7 +44,7 @@ const Routes = () => {
           ) : getUser() === "admin" ? (
             <Route path="/admin/*" element={<AdminRouter />} />
           ) : null}
-          <Route path="*" element={<Navigate to={getUserRoute() || ""} />} />
+          <Route path="*" element={<Navigate to={getUserRoute()} />} />
         </Switch>
       ) : (
         <AuthRouter />

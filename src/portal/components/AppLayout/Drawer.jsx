@@ -8,20 +8,13 @@ import { Drawer, Menu } from "antd";
 
 const { SubMenu } = Menu;
 
-interface DrawerComponent {
-  openDrawer: any;
-  setOpenDrawer: any;
-  menuStructure: any;
-  navigate: any;
-}
-
-const DrawerComponent: React.FC<DrawerComponent> = ({
+const DrawerComponent = ({
   openDrawer,
   setOpenDrawer,
   menuStructure,
   navigate,
 }) => {
-  const onNavigate = (url: string) => {
+  const onNavigate = (url) => {
     navigate(url);
     setOpenDrawer(false);
   };
@@ -42,12 +35,12 @@ const DrawerComponent: React.FC<DrawerComponent> = ({
         }}
       >
         {menuStructure
-          ? menuStructure.map((menu: any, index: any) => {
+          ? menuStructure.map((menu, index) => {
               if (menu.children) {
                 return (
                   <>
                     <SubMenu key={index} title={<b>{menu.label}</b>}>
-                      {menu.children.map((subMenu: any, index: any) => {
+                      {menu.children.map((subMenu, index) => {
                         return (
                           <Menu.Item
                             key={index}

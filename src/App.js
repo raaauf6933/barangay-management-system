@@ -1,21 +1,22 @@
+import React from "react";
 import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
 import Home from "./home";
-// import Portal from "./portal";
+import Portal from "./portal";
 import "./App.css";
 
-const App = (): JSX.Element => {
+function App() {
   return (
     <BrowserRouter>
       <Routes />
     </BrowserRouter>
   );
-};
+}
 
-const Routes = (): JSX.Element => {
+const Routes = () => {
   return (
     <Switch>
       <Route path="/*" element={<Home />} />
-      {/* <Route path="/portal/*" element={<Portal />} /> */}
+      <Route path="/portal/*" element={<Portal />} />
     </Switch>
   );
 };
