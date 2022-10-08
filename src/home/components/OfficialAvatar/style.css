@@ -1,0 +1,36 @@
+.officials-card {
+  background-color: white !important;
+  transition: 0.3s;
+}
+
+.officials-card:hover {
+  background-color: #1f8cf3 !important;
+}
+
+.officials-card:hover * {
+  color: white !important;
+}
+
+.officials-card-content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+.officials-details {
+  padding: 1.2em;
+}
+
+.officials-name {
+  font-size: 3vh;
+  font-family: "Oswald";
+}
+
+.officials-position {
+  font-size: 2vh;
+  font-weight: 500;
+  color: #1f8cf3;
+}

@@ -16,7 +16,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/*" element={<Home />} />
-      <Route path="/portal/*" element={<Portal />} />
+      <Route path="portal/*" element={<Portal />} />
     </Switch>
   );
 };

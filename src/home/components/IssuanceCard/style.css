@@ -1,0 +1,20 @@
+.issuance-card-title {
+  font-size: 1.5em;
+}
+
+.issuance-card:hover {
+  background-color: #9dd0ff;
+}
+
+.issuance-card-content {
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em !important;
+}
+
+.issuance-card-icon {
+  margin-left: 1em;
+  font-size: 3em !important;
+}
