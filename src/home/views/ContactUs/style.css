@@ -1,0 +1,52 @@
+.contact-us-container {
+  padding-top: 4em;
+}
+
+.contact-us-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-us-description {
+  color: #00000085;
+  font-size: 2vh;
+}
+
+.contact-us-icon {
+  color: #1f8cf3 !important;
+  background-color: #00000008 !important;
+}
+
+.contact-details-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-items: center;
+  justify-items: center;
+  padding-bottom: 1.5em;
+}
+
+.contact-us-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.2em;
+}
+
+.contact-us-number {
+  font-weight: 600;
+  font-size: 1.4em;
+  font-family: "Oswald";
+}
+
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  height: 440px;
+  width: auto;
+}
+
+.mapouter {
+  text-align: right;
+  height: 440px;
+  width: auto;
+}
