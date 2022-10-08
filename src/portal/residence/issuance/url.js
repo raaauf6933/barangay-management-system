@@ -1,4 +1,4 @@
-export const certificateSectionUrl = "/portal/residence/certificates";
+export const certificateSectionUrl = "/portal/residence/issuance";
 
 export const certificateListPath = certificateSectionUrl;
 

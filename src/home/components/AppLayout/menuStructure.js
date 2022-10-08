@@ -3,25 +3,20 @@ export const createMenuStructure = () => {
     {
       name: "home",
       label: "Home",
-      position: "left",
+      position: "right",
       url: "/",
     },
     {
-      name: "our_barangay",
-      label: "Our Barangay",
-      position: "left",
-      children: [
-        {
-          name: "mission_vision",
-          label: "Mission and Vision",
-          url: "/mission_vision",
-        },
-        {
-          name: "barangay_officials",
-          label: "Barangay Officials",
-          url: "/barangay_officials",
-        },
-      ],
+      name: "barangay_officials",
+      label: "Barangay Officials",
+      position: "right",
+      url: "/barangay_officials",
+    },
+    {
+      name: "contact_us",
+      position: "right",
+      label: "Contact Us",
+      url: "/contact_us",
     },
     {
       name: "portal",

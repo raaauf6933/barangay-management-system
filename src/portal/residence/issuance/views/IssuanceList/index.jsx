@@ -1,12 +1,12 @@
 import React from "react";
-import { Table, Button } from "antd";
+import { Table, Button, Card } from "antd";
 import Status from "../../../../components/Status";
 import PageHeader from "../../../../components/PageHeader";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { CreatePath_Choose } from "../../url";
 
-const CertificateList = () => {
+const IssuanceList = () => {
   const navigate = useNavigate();
 
   const columns = [
@@ -64,31 +64,33 @@ const CertificateList = () => {
   ];
   return (
     <>
-      <PageHeader title="Certificates">
-        <Button type="primary" onClick={() => navigate(CreatePath_Choose)}>
-          <b>Create New Request</b>
-        </Button>
-      </PageHeader>
-      <div className="responsive-table">
-        <Table
-          columns={columns}
-          dataSource={data}
-          loading={false}
-          // pagination={{
-          //   showTotal: (test) => {
-          //     console.log(test);
-          //   },
-          //   pageSize: 1,
+      <Card>
+        <PageHeader title="Issuance">
+          <Button type="primary" onClick={() => navigate(CreatePath_Choose)}>
+            <b>Create Request</b>
+          </Button>
+        </PageHeader>
+        <div className="responsive-table">
+          <Table
+            columns={columns}
+            dataSource={data}
+            loading={false}
+            // pagination={{
+            //   showTotal: (test) => {
+            //     console.log(test);
+            //   },
+            //   pageSize: 1,
 
-          //   onShowSizeChange: (test) => {
-          //     console.log(test);
-          //   },
-          // }}
-          onChange={() => console.log()}
-        />
-      </div>
+            //   onShowSizeChange: (test) => {
+            //     console.log(test);
+            //   },
+            // }}
+            onChange={() => console.log()}
+          />
+        </div>
+      </Card>
     </>
   );
 };
 
-export default CertificateList;
+export default IssuanceList;
