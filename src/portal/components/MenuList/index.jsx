@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Menu } from "antd";
+import { Divider, Menu } from "antd";
 import { useLocation, NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth/context";
+import "./style.css";
 const { SubMenu, Item } = Menu;
 
 const MenuList = (props) => {
-  const { menuStructure } = props;
+  const { menuStructure, settingMenuStructure } = props;
   const location = useLocation();
   const { hasNavPermission } = useAuth();
   const [current, setCurrent] = useState(location.pathname);
@@ -28,9 +29,10 @@ const MenuList = (props) => {
       mode="inline"
       defaultSelectedKeys={["1"]}
       defaultOpenKeys={["sub1"]}
-      style={{ height: "100%", borderRight: 0 }}
+      // style={{ height: "100%", borderRight: 0 }}
       selectedKeys={[current]}
       onClick={handleClick}
+      className="side-menu"
     >
       {menuStructure.map((item) => {
         return hasNavPermission(item.permission) ? (
@@ -48,6 +50,16 @@ const MenuList = (props) => {
                 <NavLink to={item.url}> {item.label}</NavLink>
               </Item>
             )}
+          </>
+        ) : null;
+      })}
+      <Divider orientation="left">Settings</Divider>
+      {settingMenuStructure.map((item) => {
+        return hasNavPermission(item.permission) ? (
+          <>
+            <Item key={item.key} icon={item.icon}>
+              <NavLink to={item.url}> {item.label}</NavLink>
+            </Item>
           </>
         ) : null;
       })}

@@ -6,6 +6,7 @@ import SectionRoute from "./components/SectionRoute";
 import { useAuth } from "./context/auth/context";
 import { Routes as Switch } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
+import ClientAppLayout from "./../home/components/AppLayout";
 
 import Home from "./residence/home";
 import IssuanceList from "./residence/issuance/views/IssuanceList";
@@ -104,11 +105,14 @@ const Routes = () => {
                 </Route>
               </Route>
             ) : null}
+            <Route path="my_profile" element={<h1>test</h1>} />
             <Route path="*" element={<Navigate to={getUserRoute()} />} />
           </Switch>
         </AppLayout>
       ) : (
-        <AuthRouter />
+        <ClientAppLayout>
+          <AuthRouter />
+        </ClientAppLayout>
       )}
     </>
   );

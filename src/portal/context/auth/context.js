@@ -53,7 +53,7 @@ export const useAuth = () => {
         ? "RESIDENT"
         : null;
 
-    return getuser === navPermission;
+    return navPermission.includes(getuser);
   };
 
   return {
