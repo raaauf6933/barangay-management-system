@@ -3,7 +3,7 @@ import React from "react";
 import { Layout, Menu, Button, Grid } from "antd";
 import SettingButton from "./components/SettingButton";
 import MenuList from "../MenuList";
-import { createMenuStructure } from "./menuStructure";
+import { createMenuStructure, SettingStructure } from "./menuStructure";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import DrawerComponent from "./Drawer";
@@ -15,6 +15,7 @@ const { Header, Content, Sider } = Layout;
 const AppLayout = ({ children }) => {
   const navigate = useNavigate();
   const menuStructure = createMenuStructure();
+  const settingMenuStructure = SettingStructure();
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const screens = useBreakpoint();
@@ -51,14 +52,18 @@ const AppLayout = ({ children }) => {
       </Header>
       <Layout>
         {screens.xs ? null : (
-          <Sider width={200} className="site-layout-background">
-            <MenuList menuStructure={menuStructure} />
+          <Sider width={250} className="site-layout-background">
+            <MenuList
+              menuStructure={menuStructure}
+              settingMenuStructure={settingMenuStructure}
+            />
           </Sider>
         )}
         <DrawerComponent
           openDrawer={openDrawer}
           setOpenDrawer={setOpenDrawer}
           menuStructure={menuStructure}
+          settingMenuStructure={settingMenuStructure}
           navigate={navigate}
         />
         <Layout

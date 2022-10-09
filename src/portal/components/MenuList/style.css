@@ -1,0 +1,8 @@
+.side-menu {
+  height: 100% !important;
+  border-right: 0;
+}
+
+.side-menu * {
+  font-size: 1.7vh;
+}
