@@ -1,0 +1,18 @@
+.dashboard-list-section {
+  padding-top: 2em;
+}
+
+.activity-log-card {
+  height: 100%;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.activity-name {
+  font-weight: 600;
+}
+
+.activity-description {
+  opacity: 0.8;
+  font-weight: 500;
+}

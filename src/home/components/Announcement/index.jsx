@@ -2,10 +2,15 @@ import React from "react";
 import { Card, Image } from "antd";
 import { Row, Col } from "antd";
 import logo from "./../../../assets/barangay_logo1.png";
+import { useNavigate } from "react-router";
+import { AnnouncementDetailsUrl } from "./../../url";
+import moment from "moment";
 const { Meta } = Card;
 
 const Announcement = (props) => {
   const { title } = props;
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -17,6 +22,7 @@ const Announcement = (props) => {
             return (
               <Col key={index} xs={24} sm={24} md={24} xl={6}>
                 <Card
+                  onClick={() => navigate(AnnouncementDetailsUrl(_e))}
                   hoverable
                   style={{
                     width: 300,
@@ -45,6 +51,9 @@ const Announcement = (props) => {
                   - Nov 16, 2020"
                     description="Lorem ipsum dolor sit amet test test...."
                   />
+                  <div className="announcement-date">
+                    <span className="">{moment().format("LL")}</span>{" "}
+                  </div>
                 </Card>
               </Col>
             );
