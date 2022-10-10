@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, Card } from "antd";
-import Status from "../../../../components/Status";
+import { columns } from "./../../utils";
 import Button from "../../../../components/Button";
 import PageHeader from "../../../../components/PageHeader";
 import { PlusOutlined } from "@ant-design/icons";
@@ -9,39 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 const AnnouncementList = () => {
   const navigate = useNavigate();
-
-  const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-      render: (text) => <span className="table-body">{text}</span>,
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => <span className="table-body">{text}</span>,
-    },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
-      render: (text) => <span className="table-body">{text}</span>,
-    },
-    {
-      title: "Created",
-      key: "created",
-      dataIndex: "created",
-      render: (text) => <span className="table-body">{text}</span>,
-    },
-    {
-      title: "Status",
-      key: "status",
-      dataIndex: "status",
-      render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
-    },
-  ];
 
   const data = [
     {
