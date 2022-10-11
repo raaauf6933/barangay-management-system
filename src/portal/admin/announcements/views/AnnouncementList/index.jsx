@@ -52,6 +52,7 @@ const AnnouncementList = () => {
                 navigate(AnnouncementDetailsUrl(record.id));
               },
             })}
+            size="large"
           />
         </div>
       </Card>

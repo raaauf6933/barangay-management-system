@@ -8,7 +8,7 @@ import moment from "moment";
 const { Meta } = Card;
 
 const Announcement = (props) => {
-  const { title } = props;
+  const { title, announcements } = props;
 
   const navigate = useNavigate();
 
@@ -16,13 +16,12 @@ const Announcement = (props) => {
     <div>
       <h1>{title}</h1>
       <Row gutter={[16, 16]}>
-        {new Array(Math.floor(Math.random() * 6) + 1)
-          .fill(null)
-          .map((_e, index) => {
+        {announcements &&
+          announcements.map((_e, index) => {
             return (
               <Col key={index} xs={24} sm={24} md={24} xl={6}>
                 <Card
-                  onClick={() => navigate(AnnouncementDetailsUrl(_e))}
+                  onClick={() => navigate(AnnouncementDetailsUrl(_e.id))}
                   hoverable
                   style={{
                     width: 300,
@@ -35,7 +34,11 @@ const Announcement = (props) => {
                         marginTop: "2em",
                       }}
                     >
-                      <Image width={150} src={logo} preview={false} />
+                      <Image
+                        width={150}
+                        src={_e.Images[0] ? _e.Images[0].url : logo}
+                        preview={false}
+                      />
                     </div>
                   }
                   actions={
@@ -47,12 +50,29 @@ const Announcement = (props) => {
                   }
                 >
                   <Meta
-                    title="Bayanihan in Taguig vs COVID-19
-                  - Nov 16, 2020"
-                    description="Lorem ipsum dolor sit amet test test...."
+                    title={_e.title}
+                    description={
+                      <div
+                        style={{
+                          fontSize: "9px",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          height: "50px",
+                          maxHeight: "50px",
+                          color: "black",
+                          opacity: 0.4,
+                        }}
+                      >
+                        <div
+                          dangerouslySetInnerHTML={{ __html: _e.content }}
+                        ></div>
+                      </div>
+                    }
                   />
                   <div className="announcement-date">
-                    <span className="">{moment().format("LL")}</span>{" "}
+                    <span className="">
+                      {moment(_e.createdAt).format("LL")}
+                    </span>{" "}
                   </div>
                 </Card>
               </Col>

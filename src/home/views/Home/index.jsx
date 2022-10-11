@@ -3,10 +3,18 @@ import Carousel from "./../../components/Carousel";
 import AppContainer from "./../../components/container";
 import Announcement from "../../components/Announcement";
 import IssuanceCard from "../../components/IssuanceCard";
+import useFetch from "./../../../hooks/useFetch";
 import "./style.css";
+import { GET_ANNOUNCEMENTS } from "./api";
 // import { Row, Col } from "antd";
 
 const HomeView = () => {
+  const { response } = useFetch({
+    url: GET_ANNOUNCEMENTS,
+  });
+
+  const announcements = response?.data?.announcements;
+
   return (
     <>
       <Carousel images={[1, 2, 3, 4, 5]} />
@@ -20,7 +28,7 @@ const HomeView = () => {
         </div>
         {/* <Row>
           <Col md={24}> */}
-        <Announcement />
+        <Announcement announcements={announcements} />
         {/* </Col> */}
         {/* <Col md={24}> */}
         {/* <div className="home-section-title">
