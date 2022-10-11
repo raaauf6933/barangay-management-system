@@ -23,7 +23,6 @@ const MenuList = (props) => {
     setCurrent(e.key);
   }
 
-  console.log(menuStructure);
   return (
     <Menu
       mode="inline"
