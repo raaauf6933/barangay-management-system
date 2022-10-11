@@ -17,21 +17,32 @@ function beforeUpload(file) {
   if (!isJpgOrPng) {
     message.error("You can only upload JPG/PNG file!");
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 1;
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error("Image must smaller than 1MB!");
+    file.status = "size_error";
   }
 
-  console.log(isJpgOrPng && isLt2M);
   return isJpgOrPng && isLt2M;
 }
 
 const UploadMultiImage = (props) => {
-  const { change } = props;
+  const { change, data, onDelete, disabled } = props;
+
+  const initialData = data
+    ? data.map((e) => ({
+        uid: e.id,
+        name: "xxx.png",
+        status: "done",
+        type: "image/png",
+        isInit: true,
+        url: e.url,
+      }))
+    : [];
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const [fileList, setFileList] = useState(initialData);
   // const [fileToUpload, setFileToUpload] = useState();
 
   // const formData = new FormData();
@@ -52,16 +63,21 @@ const UploadMultiImage = (props) => {
 
   const handleChange = ({ fileList: newFileList }) => {
     const valid_files = newFileList
-      .filter((e) => ["image/jpg", "image/jpeg", "image/png"].includes(e.type))
-      .map((e) => ({ ...e, status: (e.status = "done") }));
+      .filter(
+        (e) =>
+          ["image/jpg", "image/jpeg", "image/png"].includes(e.type) &&
+          e.status !== "size_error"
+      )
+      .map((e) => ({ ...e, status: "done" }));
 
     setFileList(valid_files);
+
     // formData.set(
     //   "files",
     //   valid_files.map((e) => e.originFileObj)
     // );
 
-    change(fileList);
+    change(valid_files);
   };
 
   const uploadButton = (
@@ -80,15 +96,30 @@ const UploadMultiImage = (props) => {
     <>
       <Upload
         // action={(e) => console.log(e)}
+        maxCount={2}
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}
         accept="image/png, image/jpeg"
         beforeUpload={beforeUpload}
+        onRemove={(img) => img.isInit && onDelete(img.uid)}
+        defaultFileList={
+          data
+            ? data.map((e) => ({
+                uid: "1",
+                name: "xxx.png",
+                status: "done",
+                response: "Server Error 500", // custom error message to show
+                url: e.url,
+              }))
+            : []
+        }
+        disabled={disabled}
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
+      <span>(Max: 2 per upload & must less than 1mb)</span>
       <Modal
         open={previewOpen}
         title={previewTitle}

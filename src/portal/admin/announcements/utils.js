@@ -1,4 +1,5 @@
 import Status from "./../../components/Status";
+import moment from "moment-timezone";
 
 export const columns = [
   {
@@ -8,9 +9,9 @@ export const columns = [
     render: (text) => <span className="table-body">{text}</span>,
   },
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Title",
+    dataIndex: "title",
+    key: "title",
     render: (text) => <span className="table-body">{text}</span>,
   },
   {
@@ -26,3 +27,13 @@ export const columns = [
     render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
   },
 ];
+
+export const parseResponse = (response) => {
+  return response?.data?.announcements.map((e) => ({
+    key: e.id,
+    id: e.id,
+    title: e.title,
+    created: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
+    status: e.status ? "ACTIVE" : "INACTIVE",
+  }));
+};

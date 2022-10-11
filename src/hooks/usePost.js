@@ -26,10 +26,13 @@ const usePost = (props) => {
     try {
       const result = await axios.request({ ...axiosParams });
       setResponse(result);
+      console.log("testttt");
       if (onComplete && result) {
+        console.log("testttt");
         onComplete(result);
       }
     } catch (err) {
+      console.log("errrr");
       const typedError = err;
       setError(typedError);
 

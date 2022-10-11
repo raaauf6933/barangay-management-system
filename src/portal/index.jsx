@@ -16,6 +16,7 @@ import FormCertificate from "./residence/issuance/views/IssuanceCreate/view/Form
 import Dashboard from "./admin/dashboard";
 import AnnouncementList from "./admin/announcements/views/AnnouncementList";
 import AnnouncementCreate from "./admin/announcements/views/AnnouncementCreate";
+import AnnouncementEdit from "./admin/announcements/views/AnnouncementEdit";
 
 const Portal = () => {
   return (
@@ -72,6 +73,7 @@ const Routes = () => {
                 <Route path="announcements" element={<SectionRoute />}>
                   <Route index element={<AnnouncementList />} />
                   <Route path="create" element={<AnnouncementCreate />} />
+                  <Route path=":id" element={<AnnouncementEdit />} />
                 </Route>
                 <Route path="request">
                   <Route index element={<h1>Certificates Landing Page</h1>} />

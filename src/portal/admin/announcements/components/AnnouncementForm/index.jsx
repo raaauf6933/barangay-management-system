@@ -2,9 +2,12 @@ import React from "react";
 import RichTextEditor from "../../../../components/RichTextEditor";
 import UploadMultiImage from "../../../../components/UploadMultiImage";
 import { Form, Input, Button, Switch } from "antd";
+import { AnnouncementListPath } from "../../url";
+import { useNavigate } from "react-router-dom";
 
 const AnnouncementForm = (props) => {
-  const { change, data, submit } = props;
+  const { change, data, submit, loading } = props;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -17,8 +20,10 @@ const AnnouncementForm = (props) => {
           placeholder="Title"
           size="large"
           value={data.title}
+          defaultValue={data.title}
           name="title"
           onChange={change}
+          disabled={loading}
         />
       </Form.Item>
       {/* 
@@ -49,6 +54,8 @@ const AnnouncementForm = (props) => {
               },
             })
           }
+          initialValue={data.content}
+          disabled={loading}
         />
         {/* <Input.TextArea rows={4} showCount /> */}
       </Form.Item>
@@ -59,6 +66,7 @@ const AnnouncementForm = (props) => {
           defaultChecked
           checked={data.status}
           onChange={(value) => change({ target: { name: "status", value } })}
+          disabled={loading}
         />
       </Form.Item>
 
@@ -91,6 +99,16 @@ const AnnouncementForm = (props) => {
               },
             })
           }
+          data={data.images}
+          onDelete={(value) =>
+            change({
+              target: {
+                name: "forDeleteImages",
+                value: [...data.forDeleteImages, value.toString()],
+              },
+            })
+          }
+          disabled={loading}
         />
       </Form.Item>
 
@@ -105,10 +123,15 @@ const AnnouncementForm = (props) => {
             marginRight: "1em",
           }}
           onClick={submit}
+          loading={loading}
         >
           Saved Announcement
         </Button>
-        <Button type="default" htmlType="button">
+        <Button
+          type="default"
+          htmlType="button"
+          onClick={() => navigate(AnnouncementListPath)}
+        >
           Cancel
         </Button>
       </Form.Item>

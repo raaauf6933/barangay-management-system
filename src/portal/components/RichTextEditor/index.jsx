@@ -2,7 +2,7 @@ import React from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 const RichTextEditor = (props) => {
-  const { onEditorChange } = props;
+  const { onEditorChange, initialValue, disabled } = props;
   //   const editorRef = useRef(null);
   //   const log = () => {
   //     if (editorRef.current) {
@@ -15,7 +15,7 @@ const RichTextEditor = (props) => {
       {" "}
       <Editor
         apiKey="3vv3gewkg1fbzgbgl1bo7re25283ovdcbcqwnkysn1ouhoxs"
-        initialValue="<h2>This is the initial content of the editor.</h2>"
+        initialValue={initialValue}
         init={{
           height: 500,
           menubar: true,
@@ -37,6 +37,7 @@ const RichTextEditor = (props) => {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
         onEditorChange={(content) => onEditorChange(content)}
+        disabled={disabled}
       />
       {/* <button onClick={log}>Log editor content</button> */}
     </>
