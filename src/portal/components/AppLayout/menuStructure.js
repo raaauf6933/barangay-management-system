@@ -56,11 +56,27 @@ export const createMenuStructure = () => {
       url: "/portal/admin/announcements",
     },
     {
-      key: "/portal/admin/request",
+      key: "/portal/admin/issuance_management",
       icon: <ContainerOutlined />,
-      label: "Request",
+      label: "Issuance Management",
+      // children: [
+      //   {
+      //     key: "/portal/admin/services/issuance",
+      //     icon: <FileTextOutlined />,
+      //     label: "Service",
+      //     permission: [PermissionEnum.ADMIN],
+      //     url: "/portal/admin/services/issuance",
+      //   },
+      //   {
+      //     key: "/portal/admin/services/issuance",
+      //     icon: <FileTextOutlined />,
+      //     label: "Issuance Request",
+      //     permission: [PermissionEnum.ADMIN],
+      //     url: "/portal/admin/services/issuance",
+      //   },
+      // ],
       permission: [PermissionEnum.ADMIN],
-      url: "/portal/admin/request",
+      url: "/portal/admin/issuance_management",
     },
     {
       key: "/portal/admin/blotter",
