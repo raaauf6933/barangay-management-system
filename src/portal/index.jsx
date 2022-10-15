@@ -19,6 +19,7 @@ import AnnouncementCreate from "./admin/announcements/views/AnnouncementCreate";
 import AnnouncementEdit from "./admin/announcements/views/AnnouncementEdit";
 import IssuanceManagementList from "./admin/issuance_management/views/IssuanceManagementList";
 import IssuanceManagementCreate from "./admin/issuance_management/views/IssuanceManagementCreate";
+import IssuanceManagementDetails from "./admin/issuance_management/views/IssuanceManagementDetails";
 
 const Portal = () => {
   return (
@@ -80,6 +81,7 @@ const Routes = () => {
                 <Route path="issuance_management">
                   <Route index element={<IssuanceManagementList />} />
                   <Route path="create" element={<IssuanceManagementCreate />} />
+                  <Route path=":id" element={<IssuanceManagementDetails />} />
                 </Route>
                 <Route path="reports">
                   <Route index element={<h1>Reports Landing Page</h1>} />

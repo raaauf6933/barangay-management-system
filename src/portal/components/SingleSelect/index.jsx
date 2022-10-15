@@ -6,6 +6,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState([]);
   const fetchRef = useRef(0);
+
   const debounceFetcher = useMemo(() => {
     const loadOptions = (value) => {
       fetchRef.current += 1;
@@ -56,7 +57,7 @@ const SingleSelect = (props) => {
       showSearch
       // value={value}
       placeholder="Select users"
-      fetchOptions={fetchUserList}
+      // fetchOptions={fetchUserList}
       // onChange={(newValue) => {
       //   setValue(newValue);
       // }}

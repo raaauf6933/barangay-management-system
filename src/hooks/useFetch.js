@@ -22,15 +22,20 @@ const useFetch = (axiosParams, options) => {
     ...axiosParams,
   };
 
-  const fetchData = async () => {
+  const fetchData = async (refetchParams) => {
     setResponse(undefined);
     // dispatch({ type: AppStateActionType.START_LOADING });
     setloading(true);
     try {
       // await tokenRefresh();
 
-      const result = await axios.request(params);
+      const result = await axios.request({
+        ...(refetchParams ? refetchParams : params),
+        url: params.url,
+      });
+
       setResponse(result);
+      return result;
     } catch (err) {
       const typedError = err;
       setError(typedError);

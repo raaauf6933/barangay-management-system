@@ -7,9 +7,17 @@ import SingleSelect from "../../../../components/SingleSelect";
 const { Option } = Select;
 
 const IssuanceForm = (props) => {
-  const { data, change, submit, loading } = props;
+  const {
+    data,
+    change,
+    submit,
+    loading,
+    hasChanged,
+    residents,
+    residentsLoading,
+    refetchResidents,
+  } = props;
   const navigate = useNavigate();
-
   const issuance_types = [
     {
       label: "Barangay Clearance",
@@ -29,8 +37,31 @@ const IssuanceForm = (props) => {
     },
   ];
 
+  // const isFormIsValid =
+  //   data.fields.some((e) => e?.errors?.length === 0) && hasChanged;
+
+  const getResidents = (name) => {
+    return refetchResidents({
+      params: {
+        name,
+      },
+    }).then((body) =>
+      body.data?.residents.map((user) => ({
+        label: `${user.first_name} ${user.middle_name} ${user.last_name}`,
+        value: user.id,
+      }))
+    );
+  };
+
   return (
     <>
+      {/* <Form
+        fields={data.fields}
+        onFieldsChange={(_, newFields) => {
+          change(newFields);
+        }}
+        scrollToFirstError
+      > */}
       <Form.Item
         label={<span className="form-label">Resident</span>}
         name="resident"
@@ -43,15 +74,16 @@ const IssuanceForm = (props) => {
           //   value={data.title}
           //   defaultValue={data.title}
           name="resident"
-          onChange={(e) =>
-            change({
-              target: {
-                name: "resident",
-                value: e.value,
-              },
-            })
-          }
-          value={data.resident}
+          fetchOptions={getResidents}
+          // onChange={(e) =>
+          //   change({
+          //     target: {
+          //       name: "resident",
+          //       value: e.value,
+          //     },
+          //   })
+          // }
+          // value={data.resident}
           //   disabled={loading}
         />
       </Form.Item>
@@ -67,15 +99,15 @@ const IssuanceForm = (props) => {
           //   value={data.title}
           //   defaultValue={data.title}
           name="issuance_type"
-          onChange={(e) =>
-            change({
-              target: {
-                name: "issuance_type",
-                value: e,
-              },
-            })
-          }
-          value={data.issuance_type}
+          // onChange={(e) =>
+          //   change({
+          //     target: {
+          //       name: "issuance_type",
+          //       value: e,
+          //     },
+          //   })
+          // }
+          // value={data.issuance_type}
 
           //   disabled={loading}
         >
@@ -91,6 +123,7 @@ const IssuanceForm = (props) => {
         labelCol={{ span: 24 }}
         name="purpose"
         rules={[{ required: true, message: "This field is required" }]}
+        validateFirst
       >
         <Input.TextArea
           placeholder="Input Purpose"
@@ -98,8 +131,9 @@ const IssuanceForm = (props) => {
           showCount
           maxLength={100}
           style={{ height: 120, resize: "none" }}
-          onChange={change}
-          value={data.purpose}
+          // onChange={change}
+          // value={data.purpose}
+          // defaultValue={data.purpose}
           name="purpose"
         />
       </Form.Item>
@@ -107,7 +141,7 @@ const IssuanceForm = (props) => {
         label={<span className="form-label">Remarks</span>}
         labelCol={{ span: 24 }}
         name="remarks"
-        rules={[{ required: true, message: "This field is required" }]}
+        rules={[{ required: false }]}
       >
         <Input.TextArea
           placeholder="Input Remarks"
@@ -115,9 +149,7 @@ const IssuanceForm = (props) => {
           showCount
           maxLength={100}
           style={{ height: 120, resize: "none" }}
-          onChange={change}
-          value={data.remarks}
-          name="remarks"
+          // name="remarks"
         />
       </Form.Item>
       <Form.Item
@@ -130,19 +162,18 @@ const IssuanceForm = (props) => {
           style={{
             marginRight: "1em",
           }}
-          onClick={submit}
+          htmlType="submit"
+          // onClick={submit}
           loading={loading}
+          // disabled={!isFormIsValid}
         >
           <strong>Submit</strong>
         </Button>
-        <Button
-          type="default"
-          htmlType="button"
-          onClick={() => navigate(IssuanceMngtListPath)}
-        >
+        <Button type="default" onClick={() => navigate(IssuanceMngtListPath)}>
           <strong>Cancel</strong>
         </Button>
       </Form.Item>
+      {/* </Form> */}
     </>
   );
 };

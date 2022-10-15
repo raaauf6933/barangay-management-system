@@ -38,6 +38,18 @@ const Status = (props) => {
               {"INACTIVE".toUpperCase()}
             </Tag>
           );
+        case "PENDING":
+          return (
+            <Tag color="red" key={status}>
+              {"PENDING".toUpperCase()}
+            </Tag>
+          );
+        case "CONFIRMED":
+          return (
+            <Tag color="green" key={status}>
+              {"CONFIRMED".toUpperCase()}
+            </Tag>
+          );
         default:
           return <SkeletonP active></SkeletonP>;
       }

@@ -24,25 +24,39 @@ export const columns = [
     title: "Purpose",
     key: "purpose",
     dataIndex: "purpose",
-    render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
+    render: (text) => (
+      <>
+        <span className="table-body">{text}</span>
+      </>
+    ),
   },
   {
-    title: "Remark",
-    key: "remark",
-    dataIndex: "remark",
-    render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
+    title: "Remarks",
+    key: "remarks",
+    dataIndex: "remarks",
+    render: (text) => (
+      <>
+        <span className="table-body">{text}</span>
+      </>
+    ),
   },
   {
     title: "Paid",
     key: "paid",
     dataIndex: "paid",
-    render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
+    render: (status) => (
+      <>{<Status type="DEFAULT" status={status ? "CONFIRMED" : "PENDING"} />}</>
+    ),
   },
   {
     title: "Created At",
     key: "createdAt",
     dataIndex: "createdAt",
-    render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
+    render: (text) => (
+      <>
+        <span className="table-body">{text}</span>
+      </>
+    ),
   },
   {
     title: "Status",
@@ -53,11 +67,15 @@ export const columns = [
 ];
 
 export const parseResponse = (response) => {
-  return response?.data?.announcements.map((e) => ({
+  return response?.data?.issuance_residents.map((e) => ({
     key: e.id,
     id: e.id,
-    title: e.title,
-    created: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
-    status: e.status ? "ACTIVE" : "INACTIVE",
+    resident: e.resident_id,
+    service: e.issuance_id,
+    purpose: e.purpose,
+    remarks: e.remarks,
+    paid: e.Service_transaction.isPaid,
+    createdAt: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
+    status: e.status,
   }));
 };

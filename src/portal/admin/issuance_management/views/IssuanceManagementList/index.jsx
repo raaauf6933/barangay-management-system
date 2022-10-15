@@ -1,14 +1,22 @@
 import React from "react";
 import { Table, Card } from "antd";
-import { columns } from "../../utils";
+import { columns, parseResponse } from "../../utils";
 import Button from "../../../../components/Button";
 import PageHeader from "../../../../components/PageHeader";
 import { PlusOutlined } from "@ant-design/icons";
+import useFetch from "../../../../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { IssuanceMngtDetailsUrl } from "../../url";
+import { GET_RESIDENT_ISSUANCES } from "../../api";
 
 const IssuanceManagementList = () => {
   const navigate = useNavigate();
+
+  const { loading, response } = useFetch({
+    url: GET_RESIDENT_ISSUANCES,
+  });
+
+  const data = parseResponse(response);
 
   return (
     <>
@@ -26,8 +34,8 @@ const IssuanceManagementList = () => {
         <div className="responsive-table">
           <Table
             columns={columns}
-            dataSource={[]}
-            loading={false}
+            dataSource={data}
+            loading={loading}
             // pagination={{
             //   showTotal: (test) => {
             //     console.log(test);

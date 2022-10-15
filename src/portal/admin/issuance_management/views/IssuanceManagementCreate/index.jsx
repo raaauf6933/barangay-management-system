@@ -1,15 +1,16 @@
-import { Card } from "antd";
+import { Card, Form } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import usePost from "../../../../../hooks/usePost";
-import FormComponent from "../../../../components/Form";
 import useNotify from "../../../../hooks/useNotify";
-import { CREATE_RESIDENT_ISSUANCE } from "../../api";
+import { CREATE_RESIDENT_ISSUANCE, GET_RESIDENTS } from "../../api";
 import IssuanceForm from "../../components/IssuanceForm";
+import useFetch from "../../../../../hooks/useFetch";
 import { IssuanceMngtListPath } from "../../url";
 
 const IssuanceManagementCreate = () => {
   const notify = useNotify();
+  const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const [createResidentIssuance, createResidentIssuanceOpts] = usePost({
@@ -22,16 +23,30 @@ const IssuanceManagementCreate = () => {
     },
   });
 
+  const {
+    response,
+    loading: residentsLoading,
+    refetch: refetchResidents,
+  } = useFetch({
+    url: GET_RESIDENTS,
+  });
+
+  const residents = response?.data?.residents;
+
   const handleSubmit = async (form) => {
+    const newData = {
+      ...form,
+      resident: form.resident.value,
+    };
     await createResidentIssuance({
       url: CREATE_RESIDENT_ISSUANCE,
-      data: form,
+      data: newData,
     });
   };
 
   const initialData = {
     resident: "",
-    issuance_type: null,
+    issuance_type: "",
     purpose: "",
     remarks: "",
   };
@@ -39,18 +54,16 @@ const IssuanceManagementCreate = () => {
   return (
     <>
       <Card title="Create Issuance">
-        <FormComponent initial={initialData} onSubmit={handleSubmit}>
-          {({ data, change, submit }) => (
-            <>
-              <IssuanceForm
-                data={data}
-                change={change}
-                submit={submit}
-                loading={createResidentIssuanceOpts.loading}
-              />
-            </>
-          )}
-        </FormComponent>
+        <>
+          <Form form={form} initialValues={initialData} onFinish={handleSubmit}>
+            <IssuanceForm
+              residentsLoading={residentsLoading}
+              loading={createResidentIssuanceOpts.loading}
+              residents={residents}
+              refetchResidents={refetchResidents}
+            />
+          </Form>
+        </>
       </Card>
     </>
   );
