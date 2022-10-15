@@ -8,6 +8,11 @@ import useNotify from "../../../../hooks/useNotify";
 import { EDIT_RESIDENT_ISSUANCE, GET_RESIDENT_ISSUANCE } from "../../api";
 import IssuanceForm from "../../components/IssuanceForm";
 import { IssuanceMngtListPath } from "../../url";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import BarangayClearanceTemplate from "../../pdf-templates/barangay_clearance";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const IssuanceManagementDetails = () => {
   const notify = useNotify();
@@ -51,21 +56,32 @@ const IssuanceManagementDetails = () => {
 
   const initialData = {
     resident: data?.resident_id,
+    resident_label: `${data?.Resident?.first_name}  ${data?.Resident?.middle_name} ${data?.Resident?.last_name}`,
     issuance_type: data?.issuance_id,
     purpose: data?.purpose,
     remarks: data?.remarks,
+    payment_status: data?.Service_transaction?.isPaid,
+    status: data?.status,
   };
 
   useEffect(() => {
     form.setFieldsValue(initialData);
   }, [loading]);
 
+  const handlePrintPdf = () => {
+    pdfMake.createPdf(BarangayClearanceTemplate()).open();
+  };
+
   return (
     <>
       <Card title={`#${id}`}>
         <>
           <Form form={form} initialValues={initialData} onFinish={handleSubmit}>
-            <IssuanceForm loading={editResidentIssuanceOpts.loading} />
+            <IssuanceForm
+              loading={editResidentIssuanceOpts.loading}
+              initialData={initialData}
+              handlePrintPdf={handlePrintPdf}
+            />
           </Form>
         </>
       </Card>

@@ -7,12 +7,16 @@ export const columns = [
     dataIndex: "id",
     key: "id",
     render: (text) => <span className="table-body">{text}</span>,
+    sorter: (a, b) => parseInt(a.id) - parseInt(b.id),
+    sortDirections: ["descend"],
   },
   {
     title: "Resident",
     dataIndex: "resident",
     key: "resident",
     render: (text) => <span className="table-body">{text}</span>,
+    sorter: (a, b) => a.resident.localeCompare(b.resident),
+    sortDirections: ["descend"],
   },
   {
     title: "Service",
@@ -21,29 +25,9 @@ export const columns = [
     render: (text) => <span className="table-body">{text}</span>,
   },
   {
-    title: "Purpose",
-    key: "purpose",
-    dataIndex: "purpose",
-    render: (text) => (
-      <>
-        <span className="table-body">{text}</span>
-      </>
-    ),
-  },
-  {
-    title: "Remarks",
-    key: "remarks",
-    dataIndex: "remarks",
-    render: (text) => (
-      <>
-        <span className="table-body">{text}</span>
-      </>
-    ),
-  },
-  {
-    title: "Paid",
-    key: "paid",
-    dataIndex: "paid",
+    title: "Payment Status",
+    key: "payment_status",
+    dataIndex: "payment_status",
     render: (status) => (
       <>{<Status type="DEFAULT" status={status ? "CONFIRMED" : "PENDING"} />}</>
     ),
@@ -67,15 +51,15 @@ export const columns = [
 ];
 
 export const parseResponse = (response) => {
-  return response?.data?.issuance_residents.map((e) => ({
-    key: e.id,
-    id: e.id,
-    resident: e.resident_id,
-    service: e.issuance_id,
-    purpose: e.purpose,
-    remarks: e.remarks,
-    paid: e.Service_transaction.isPaid,
-    createdAt: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
-    status: e.status,
-  }));
+  return response?.data?.issuance_residents
+    .map((e) => ({
+      key: e.id,
+      id: e.id,
+      resident: `${e.Resident.first_name} ${e.Resident.last_name}`,
+      service: e.Service_type.name,
+      payment_status: e.Service_transaction.isPaid,
+      createdAt: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
+      status: e.status,
+    }))
+    .reverse();
 };

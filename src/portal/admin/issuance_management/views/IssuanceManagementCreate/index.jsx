@@ -45,8 +45,8 @@ const IssuanceManagementCreate = () => {
   };
 
   const initialData = {
-    resident: "",
-    issuance_type: "",
+    resident: undefined,
+    issuance_type: undefined,
     purpose: "",
     remarks: "",
   };
@@ -57,7 +57,6 @@ const IssuanceManagementCreate = () => {
         <>
           <Form form={form} initialValues={initialData} onFinish={handleSubmit}>
             <IssuanceForm
-              residentsLoading={residentsLoading}
               loading={createResidentIssuanceOpts.loading}
               residents={residents}
               refetchResidents={refetchResidents}

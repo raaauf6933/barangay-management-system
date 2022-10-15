@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input, Select, Button, Tag } from "antd";
 import { IssuanceMngtListPath } from "../../url";
 import { useNavigate } from "react-router-dom";
 import SingleSelect from "../../../../components/SingleSelect";
@@ -7,16 +7,7 @@ import SingleSelect from "../../../../components/SingleSelect";
 const { Option } = Select;
 
 const IssuanceForm = (props) => {
-  const {
-    data,
-    change,
-    submit,
-    loading,
-    hasChanged,
-    residents,
-    residentsLoading,
-    refetchResidents,
-  } = props;
+  const { loading, initialData, refetchResidents, handlePrintPdf } = props;
   const navigate = useNavigate();
   const issuance_types = [
     {
@@ -85,6 +76,8 @@ const IssuanceForm = (props) => {
           // }
           // value={data.resident}
           //   disabled={loading}
+          searchValue={initialData?.resident_label}
+          disabled={initialData?.resident_label || loading}
         />
       </Form.Item>
       <Form.Item
@@ -109,7 +102,7 @@ const IssuanceForm = (props) => {
           // }
           // value={data.issuance_type}
 
-          //   disabled={loading}
+          disabled={loading}
         >
           {issuance_types.map((e) => (
             <Option key={e.value} value={e.value}>
@@ -135,6 +128,7 @@ const IssuanceForm = (props) => {
           // value={data.purpose}
           // defaultValue={data.purpose}
           name="purpose"
+          disabled={loading}
         />
       </Form.Item>
       <Form.Item
@@ -150,13 +144,92 @@ const IssuanceForm = (props) => {
           maxLength={100}
           style={{ height: 120, resize: "none" }}
           // name="remarks"
+          disabled={loading}
         />
       </Form.Item>
+      {initialData?.payment_status !== undefined ? (
+        <>
+          {" "}
+          <Form.Item
+            label={<span className="form-label">Payment Status</span>}
+            labelCol={{ span: 24 }}
+            name="payment_status"
+            rules={[{ required: true }]}
+          >
+            <Select
+              placeholder="Payment Status"
+              defaultValue={false}
+              size="large"
+              disabled={loading}
+            >
+              <Option value={false}>
+                {" "}
+                <Tag color="magenta">
+                  <strong>Pending</strong>
+                </Tag>
+              </Option>
+              <Option value={true}>
+                {" "}
+                <Tag color="green">
+                  <strong>Confirmed</strong>
+                </Tag>
+              </Option>
+            </Select>
+          </Form.Item>{" "}
+        </>
+      ) : null}
+      {initialData?.status !== undefined ? (
+        <>
+          {" "}
+          <Form.Item
+            label={<span className="form-label">Status</span>}
+            labelCol={{ span: 24 }}
+            name="status"
+            rules={[{ required: true }]}
+          >
+            <Select
+              placeholder="Status"
+              defaultValue={false}
+              size="large"
+              disabled={loading}
+            >
+              <Option value="PENDING">
+                {" "}
+                <Tag color="magenta">
+                  <strong>Pending</strong>
+                </Tag>
+              </Option>
+              <Option value="APPROVED">
+                <Tag color="green">
+                  <strong>Approved</strong>
+                </Tag>
+              </Option>
+            </Select>
+          </Form.Item>{" "}
+        </>
+      ) : null}
       <Form.Item
         style={{
           textAlign: "center",
         }}
       >
+        {initialData?.status === "APPROVED" ? (
+          <Button
+            type="primary"
+            ghost
+            style={{
+              marginRight: "1em",
+            }}
+            // htmlType="submit"
+            // onClick={submit}
+            // loading={loading}
+            // disabled={loading}
+            onClick={handlePrintPdf}
+          >
+            <strong>Print PDF</strong>
+          </Button>
+        ) : null}
+
         <Button
           type="primary"
           style={{
@@ -165,7 +238,7 @@ const IssuanceForm = (props) => {
           htmlType="submit"
           // onClick={submit}
           loading={loading}
-          // disabled={!isFormIsValid}
+          disabled={loading}
         >
           <strong>Submit</strong>
         </Button>
