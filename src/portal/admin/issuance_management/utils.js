@@ -14,9 +14,9 @@ export const columns = [
     title: "Resident",
     dataIndex: "resident",
     key: "resident",
-    render: (text) => <span className="table-body">{text}</span>,
-    sorter: (a, b) => a.resident.localeCompare(b.resident),
-    sortDirections: ["descend"],
+    // render: (text) => <span className="table-body">{text}</span>,
+    // sorter: (a, b) => a.resident.localeCompare(b.resident),
+    // sortDirections: ["descend"],
   },
   {
     title: "Service",

@@ -76,7 +76,12 @@ const IssuanceManagementDetails = () => {
     <>
       <Card title={`#${id}`}>
         <>
-          <Form form={form} initialValues={initialData} onFinish={handleSubmit}>
+          <Form
+            form={form}
+            initialValues={initialData}
+            onFinish={handleSubmit}
+            scrollToFirstError
+          >
             <IssuanceForm
               loading={editResidentIssuanceOpts.loading}
               initialData={initialData}

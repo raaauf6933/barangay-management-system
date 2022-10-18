@@ -9,6 +9,8 @@ import {
 } from "@ant-design/icons";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
+import { BiUser } from "react-icons/bi";
+import { GrUserSettings } from "react-icons/gr";
 import { PermissionEnum } from "./../../utils/permissionEnum";
 
 export const createMenuStructure = () => {
@@ -90,6 +92,22 @@ export const createMenuStructure = () => {
       icon: <HiOutlineUserGroup />,
       label: "Officials Management",
       permission: [PermissionEnum.ADMIN],
+      children: [
+        {
+          key: "/portal/admin/officials_management/positions",
+          icon: <GrUserSettings />,
+          label: "Positions",
+          permission: [PermissionEnum.ADMIN],
+          url: "/portal/admin/officials_management/positions",
+        },
+        {
+          key: "/portal/admin/officials_management/officials",
+          icon: <BiUser />,
+          label: "Officials",
+          permission: [PermissionEnum.ADMIN],
+          url: "/portal/admin/officials_management/officials",
+        },
+      ],
       url: "/portal/admin/officials_management",
     },
     {

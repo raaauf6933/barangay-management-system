@@ -20,6 +20,8 @@ import AnnouncementEdit from "./admin/announcements/views/AnnouncementEdit";
 import IssuanceManagementList from "./admin/issuance_management/views/IssuanceManagementList";
 import IssuanceManagementCreate from "./admin/issuance_management/views/IssuanceManagementCreate";
 import IssuanceManagementDetails from "./admin/issuance_management/views/IssuanceManagementDetails";
+import PositionsList from "./admin/positions/views/PositionsList";
+import OfficialsList from "./admin/officials/views/OfficialsList";
 
 const Portal = () => {
   return (
@@ -92,11 +94,14 @@ const Routes = () => {
                   <Route path="create" element={<h1>Test details</h1>} />
                 </Route>
                 <Route path="officials_management">
-                  <Route
-                    index
-                    element={<h1>officials_management Landing Page</h1>}
-                  />
-                  <Route path="create" element={<h1>Test details</h1>} />
+                  <Route path="positions">
+                    <Route index element={<PositionsList />} />
+                    <Route path="create" element={<h1>Test details</h1>} />
+                  </Route>
+                  <Route path="officials">
+                    <Route index element={<OfficialsList />} />
+                    <Route path="create" element={<h1>Test details</h1>} />
+                  </Route>
                 </Route>
                 <Route path="resident_management">
                   <Route

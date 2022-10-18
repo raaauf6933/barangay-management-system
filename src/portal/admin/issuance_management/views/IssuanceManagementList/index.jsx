@@ -1,5 +1,6 @@
 import React from "react";
-import { Table, Card } from "antd";
+import { Card } from "antd";
+import Table from "../../../../components/Table";
 import { columns, parseResponse } from "../../utils";
 import Button from "../../../../components/Button";
 import PageHeader from "../../../../components/PageHeader";
@@ -36,6 +37,7 @@ const IssuanceManagementList = () => {
             columns={columns}
             dataSource={data}
             loading={loading}
+            searchColumns={["resident"]}
             // pagination={{
             //   showTotal: (test) => {
             //     console.log(test);
