@@ -62,20 +62,8 @@ const IssuanceForm = (props) => {
         <SingleSelect
           placeholder="Search Resident"
           size="large"
-          //   value={data.title}
-          //   defaultValue={data.title}
           name="resident"
           fetchOptions={getResidents}
-          // onChange={(e) =>
-          //   change({
-          //     target: {
-          //       name: "resident",
-          //       value: e.value,
-          //     },
-          //   })
-          // }
-          // value={data.resident}
-          //   disabled={loading}
           searchValue={initialData?.resident_label}
           disabled={initialData?.resident_label || loading}
         />
@@ -89,19 +77,7 @@ const IssuanceForm = (props) => {
         <Select
           placeholder="Select Issuance Type"
           size="large"
-          //   value={data.title}
-          //   defaultValue={data.title}
           name="issuance_type"
-          // onChange={(e) =>
-          //   change({
-          //     target: {
-          //       name: "issuance_type",
-          //       value: e,
-          //     },
-          //   })
-          // }
-          // value={data.issuance_type}
-
           disabled={loading}
         >
           {issuance_types.map((e) => (

@@ -1,35 +1,71 @@
-import { Form, Input, Modal, Switch, InputNumber } from "antd";
+import { Form, Input, Modal, Switch, InputNumber, Select } from "antd";
 import React, { useEffect } from "react";
 import UploadImage from "../UploadImage";
 
+const { Option } = Select;
+
 const OfficialFormModal = (props) => {
-  const { open, title, onSubmit, close, data, loading, formName } = props;
+  const {
+    open,
+    title,
+    onSubmit,
+    close,
+    data,
+    loading,
+    formName,
+    responsePositions,
+    loadingPositions,
+  } = props;
   const [form] = Form.useForm();
   const formStatus = Form.useWatch("status", form);
-  const con = Form.useWatch(["contact_no"], form);
+  const formImage = Form.useWatch(["image"], form);
 
-  console.log(typeof con);
   const initialData = {
+    position: undefined || data?.Position?.id,
     first_name: undefined || data?.first_name,
     last_name: undefined || data?.last_name,
     contact_no: 0 || data?.contact_no,
     email: undefined || data?.email,
-    status: false || data?.status,
+    status: data?.status !== undefined ? data?.status : false,
+    image: data?.photo_url
+      ? [
+          {
+            uid: data?.photo_url,
+            name: "Official Photo",
+            status: "done",
+            type: "image/png",
+            isInit: true,
+            url: data?.photo_url,
+          },
+        ]
+      : [],
   };
 
   useEffect(() => {
     form.setFieldsValue(initialData);
+  }, [data]);
 
-    return () => {
+  useEffect(
+    () => () => {
       form.resetFields([
+        "position",
         "first_name",
         "last_name",
         "contact_no",
         "email",
         "status",
+        "image",
       ]);
-    };
-  }, [data && loading]);
+    },
+    [open]
+  );
+
+  const positions = responsePositions?.data?.positions
+    ? responsePositions?.data?.positions.map((position) => ({
+        value: position?.id,
+        label: position?.name,
+      }))
+    : [];
 
   return (
     <>
@@ -45,6 +81,7 @@ const OfficialFormModal = (props) => {
           okButtonProps={{
             htmlType: "submit",
             form: formName,
+            loading,
           }}
           cancelButtonProps={{
             onClick: close,
@@ -52,6 +89,26 @@ const OfficialFormModal = (props) => {
           okText="Save"
           onCancel={close}
         >
+          <Form.Item
+            // eslint-disable-next-line react/no-unescaped-entities
+            label={<span className="form-label">Official's Position</span>}
+            labelCol={{ span: 24 }}
+            name="position"
+            rules={[{ required: true, message: "This field is required" }]}
+          >
+            <Select
+              placeholder="Select Position"
+              size="large"
+              name="position"
+              loading={loadingPositions || loading}
+            >
+              {positions.map((e) => (
+                <Option key={e.value} value={e.value}>
+                  {e.label}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
           <Form.Item
             label={<span className="form-label">First Name </span>}
             rules={[{ required: true, message: "This field is required" }]}
@@ -119,7 +176,10 @@ const OfficialFormModal = (props) => {
             labelCol={{ span: 24 }}
             name="image"
           >
-            <UploadImage />
+            <UploadImage
+              change={(images) => form.setFieldValue("image", images)}
+              data={formImage}
+            />
           </Form.Item>
         </Modal>
       </Form>

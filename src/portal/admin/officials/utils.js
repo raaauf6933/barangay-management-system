@@ -7,7 +7,7 @@ export const columns = [
     dataIndex: "id",
     key: "id",
     render: (text) => <span className="table-body">{text}</span>,
-    sorter: (a, b) => parseInt(a.id) - parseInt(b.id),
+    sorter: (a, b) => parseInt(b.id) - parseInt(a.id),
     sortDirections: ["descend"],
   },
   {

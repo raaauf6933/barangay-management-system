@@ -19,6 +19,25 @@ export const columns = [
     // sortDirections: ["descend"],
   },
   {
+    title: "Age",
+    key: "age",
+    dataIndex: "age",
+    // render: (status) => (
+    //   <>{<Status type="DEFAULT" status={status ? "ACTIVE" : "INACTIVE"} />}</>
+    // ),
+  },
+  {
+    title: "Gender",
+    key: "gender",
+    dataIndex: "gender",
+    render: (text) => <span className="table-body">{text.toUpperCase()}</span>,
+  },
+  {
+    title: "Is Voter",
+    key: "isvoter",
+    dataIndex: "isvoter",
+  },
+  {
     title: "Status",
     key: "status",
     dataIndex: "status",
@@ -29,11 +48,13 @@ export const columns = [
 ];
 
 export const parseResponse = (response) => {
-  return response?.data?.positions
+  return response?.data?.residents
     .map((e) => ({
       key: e.id,
       id: e.id,
-      name: e.name,
+      name: `${e.first_name} ${e.last_name}`,
+      age: moment().diff(e.birth_date, "years"),
+      gender: e.gender,
       status: e.status,
     }))
     .reverse();
