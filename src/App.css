@@ -7,3 +7,7 @@
 main {
   flex: 1;
 }
+
+.ant-input {
+  text-transform: capitalize;
+}

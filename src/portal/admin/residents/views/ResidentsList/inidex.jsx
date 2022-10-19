@@ -25,7 +25,7 @@ const ResidentsList = () => {
       <PageHeader title="Residents">
         <Button
           type="primary"
-          onClick={() => alert("create")}
+          onClick={() => navigate("create")}
           icon={<PlusOutlined />}
           mobileView
         >

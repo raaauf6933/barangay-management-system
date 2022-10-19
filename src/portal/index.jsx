@@ -23,6 +23,7 @@ import IssuanceManagementDetails from "./admin/issuance_management/views/Issuanc
 import PositionsList from "./admin/positions/views/PositionsList";
 import OfficialsList from "./admin/officials/views/OfficialsList";
 import ResidentsList from "./admin/residents/views/ResidentsList/inidex";
+import ResidentsCreate from "./admin/residents/views/ResidentsCreate";
 
 const Portal = () => {
   return (
@@ -106,7 +107,7 @@ const Routes = () => {
                 </Route>
                 <Route path="resident_management">
                   <Route index element={<ResidentsList />} />
-                  <Route path="create" element={<h1>Test details</h1>} />
+                  <Route path="create" element={<ResidentsCreate />} />
                 </Route>
                 <Route path="users">
                   <Route index element={<h1>User Landing Page</h1>} />
