@@ -6,6 +6,7 @@ function FormComponent(props) {
   const renderProps = useForm(initial, onSubmit);
 
   function handleSubmit(event, cb) {
+    event.preventDefault();
     const { reset, submit } = renderProps;
     if (event) {
       event.stopPropagation();

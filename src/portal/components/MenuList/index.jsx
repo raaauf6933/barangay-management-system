@@ -40,7 +40,7 @@ const MenuList = (props) => {
               <SubMenu key={item.url} title={item.label} icon={item.icon}>
                 {item.children.map((sub) => (
                   <Item key={sub.key} icon={sub.icon}>
-                    {sub.label}{" "}
+                    <NavLink to={sub.url}> {sub.label}</NavLink>
                   </Item>
                 ))}
               </SubMenu>

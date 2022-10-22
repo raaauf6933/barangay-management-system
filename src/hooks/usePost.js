@@ -5,7 +5,9 @@ import { useState } from "react";
 axios.defaults.baseURL = process.env.REACT_APP_API_BASEURL;
 
 const usePost = (props) => {
-  const { onComplete, onError } = props;
+  const onComplete = props?.onComplete;
+  const onError = props?.onError;
+
   //   const { dispatch } = useContext(AppStateContext);
   const [response, setResponse] = useState(undefined);
   const [error, setError] = useState();
@@ -26,13 +28,12 @@ const usePost = (props) => {
     try {
       const result = await axios.request({ ...axiosParams });
       setResponse(result);
-      console.log("testttt");
+
       if (onComplete && result) {
-        console.log("testttt");
         onComplete(result);
       }
+      return result;
     } catch (err) {
-      console.log("errrr");
       const typedError = err;
       setError(typedError);
 
