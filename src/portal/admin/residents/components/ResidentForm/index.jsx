@@ -1,28 +1,32 @@
 import { Form, Button, Input, Row, Col, Select, Switch } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ResidentsListPath } from "./../../url";
 import nationalities from "./../../../../utils/nationalities";
 
 const ResidentForm = (props) => {
-  const { loading, onSubmit } = props;
+  const { loading, onSubmit, data } = props;
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const formStatus = Form.useWatch("status", form);
 
   const initialData = {
-    first_name: null,
-    middle_name: null,
-    last_name: null,
-    gender: null,
-    birth_date: null,
-    email: null,
-    contact_number: null,
-    address: null,
-    civil_status: null,
-    citizenship: "Filipino",
-    status: true,
+    first_name: null || data?.first_name,
+    middle_name: null || data?.middle_name,
+    last_name: null || data?.last_name,
+    gender: null || data?.gender,
+    birth_date: null || data?.birth_date,
+    email: null || data?.email,
+    contact_number: null || data?.contact_number,
+    address: null || data?.address,
+    civil_status: null || data?.civil_status,
+    citizenship: data?.citizenship || "Filipino",
+    status: data?.status !== undefined ? data?.status : true,
   };
+
+  useEffect(() => {
+    form.setFieldsValue(initialData);
+  }, [data]);
 
   return (
     <>

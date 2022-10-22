@@ -4,15 +4,31 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "./../../context/auth/context";
 
 const FormComponent = () => {
-  const { login } = useAuth();
-
-  const onFinish = (values) => {
+  const { login, loading } = useAuth();
+  const [form] = Form.useForm();
+  const onFinish = async (values) => {
     // console.log(values);
-    login(values);
+
+    const result = await login(values);
+
+    if (result.response.status === 400) {
+      form.setFields([
+        {
+          name: "username",
+          errors: [result.response.data.message],
+        },
+        {
+          name: "password",
+          errors: [result.response.data.message],
+        },
+      ]);
+    }
   };
 
   return (
     <Form
+      form={form}
+      id="loginForm"
       name="normal_login"
       className="login-form"
       initialValues={{ remember: true }}
@@ -53,13 +69,13 @@ const FormComponent = () => {
           size="large"
         />
       </Form.Item>
-      <Form.Item>
+      {/* <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <a className="login-form-forgot" href="##">
             Forgot password ?
           </a>
         </Form.Item>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item>
         <Button
@@ -69,6 +85,7 @@ const FormComponent = () => {
             width: "100%",
           }}
           size="large"
+          loading={loading}
         >
           Log in
         </Button>

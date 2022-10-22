@@ -24,6 +24,9 @@ import PositionsList from "./admin/positions/views/PositionsList";
 import OfficialsList from "./admin/officials/views/OfficialsList";
 import ResidentsList from "./admin/residents/views/ResidentsList/inidex";
 import ResidentsCreate from "./admin/residents/views/ResidentsCreate";
+import ResidentDetails from "./admin/residents/views/ResidentDetails";
+
+import UsersList from "./admin/users/views/UsersList";
 
 const Portal = () => {
   return (
@@ -92,7 +95,7 @@ const Routes = () => {
                   <Route path="create" element={<h1>Test details</h1>} />
                 </Route>
                 <Route path="blotter">
-                  <Route index element={<h1>Blotter Landing Page</h1>} />
+                  <Route index element={<h1>Test Blotter List</h1>} />
                   <Route path="create" element={<h1>Test details</h1>} />
                 </Route>
                 <Route path="officials_management">
@@ -108,9 +111,10 @@ const Routes = () => {
                 <Route path="resident_management">
                   <Route index element={<ResidentsList />} />
                   <Route path="create" element={<ResidentsCreate />} />
+                  <Route path=":id" element={<ResidentDetails />} />
                 </Route>
                 <Route path="users">
-                  <Route index element={<h1>User Landing Page</h1>} />
+                  <Route index element={<UsersList />} />
                   <Route path="create" element={<h1>Test details</h1>} />
                 </Route>
               </Route>

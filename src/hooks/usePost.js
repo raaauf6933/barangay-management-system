@@ -32,6 +32,7 @@ const usePost = (props) => {
       if (onComplete && result) {
         onComplete(result);
       }
+      return result;
     } catch (err) {
       const typedError = err;
       setError(typedError);

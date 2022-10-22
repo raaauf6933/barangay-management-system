@@ -7,7 +7,7 @@ import PageHeader from "../../../../components/PageHeader";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../../../../hooks/useFetch";
 import { columns, parseResponse } from "../../utils";
-import { ResidentsListPathDetails } from "../../url";
+import { ResidentDetailsUrl } from "../../url";
 import { GET_RESIDENTS } from "../../api";
 
 const ResidentsList = () => {
@@ -51,7 +51,7 @@ const ResidentsList = () => {
           onChange={() => console.log()}
           onRow={(record) => ({
             onClick: () => {
-              navigate(ResidentsListPathDetails(record.id));
+              navigate(ResidentDetailsUrl(record.id));
             },
           })}
           size="large"
