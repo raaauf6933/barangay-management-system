@@ -12,7 +12,28 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import BarangayClearanceTemplate from "../../pdf-templates/barangay_clearance";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+pdfMake.fonts = {
+  ...pdfMake.fonts,
+  basker: {
+    normal:
+      "https://res.cloudinary.com/dlwccjs49/raw/upload/v1667038743/fonts/Baskervville-Regular_y6wlll.ttf",
+  },
+  Roboto: {
+    normal:
+      "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf",
+    bold: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf",
+    italics:
+      "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf",
+    bolditalics:
+      "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf",
+  },
+  dafoe: {
+    normal:
+      "https://res.cloudinary.com/dlwccjs49/raw/upload/v1667040253/fonts/MrDafoe-Regular_l57lv4.ttf",
+  },
+};
 
 const IssuanceManagementDetails = () => {
   const notify = useNotify();
