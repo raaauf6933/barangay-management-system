@@ -10,10 +10,13 @@ import { ResidentsListPath } from "../../url";
 const ResidentsCreate = () => {
   const navigate = useNavigate();
   const notify = useNotify();
-  const [createResident] = usePost({
+  const [createResident, createResidentOpts] = usePost({
     onComplete: () => {
       notify("success", "New Resident has been added!");
       navigate(ResidentsListPath);
+    },
+    onError: (e) => {
+      notify("error", e.response.data.message);
     },
   });
 
@@ -26,7 +29,10 @@ const ResidentsCreate = () => {
   return (
     <>
       <Card title="Create Resident">
-        <ResidentForm onSubmit={handleSubmit} />
+        <ResidentForm
+          onSubmit={handleSubmit}
+          loading={createResidentOpts.loading}
+        />
       </Card>
     </>
   );

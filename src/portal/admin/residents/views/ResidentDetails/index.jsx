@@ -25,10 +25,13 @@ const ResidentDetails = () => {
     }
   );
 
-  const [editResident] = usePost({
+  const [editResident, editResidentOpts] = usePost({
     onComplete: () => {
       notify("success", "New Resident has been added!");
       navigate(ResidentsListPath);
+    },
+    onError: (e) => {
+      notify("error", e.response.data.message);
     },
   });
 
@@ -44,7 +47,11 @@ const ResidentDetails = () => {
   return (
     <>
       <Card title="Edit Resident">
-        <ResidentForm onSubmit={handleSubmit} data={response?.data?.resident} />
+        <ResidentForm
+          onSubmit={handleSubmit}
+          data={response?.data?.resident}
+          loading={editResidentOpts.loading}
+        />
       </Card>
     </>
   );

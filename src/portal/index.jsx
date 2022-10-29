@@ -27,6 +27,7 @@ import ResidentsCreate from "./admin/residents/views/ResidentsCreate";
 import ResidentDetails from "./admin/residents/views/ResidentDetails";
 
 import UsersList from "./admin/users/views/UsersList";
+import MyProfile from "./myProfile";
 
 const Portal = () => {
   return (
@@ -119,7 +120,7 @@ const Routes = () => {
                 </Route>
               </Route>
             ) : null}
-            <Route path="my_profile" element={<h1>test</h1>} />
+            <Route path="my_profile" element={<MyProfile />} />
             <Route path="*" element={<Navigate to={getUserRoute()} />} />
           </Switch>
         </AppLayout>

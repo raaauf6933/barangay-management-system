@@ -4,6 +4,7 @@ import {
   // useContext
 } from "react";
 import axios from "axios";
+import { getToken } from "../portal/context/auth/utils";
 // import AppStateContext from "context/appState/context";
 // import { AppStateActionType } from "types";
 // import { getTokens } from "context/auth/handlers";
@@ -18,11 +19,17 @@ const useFetch = (axiosParams, options) => {
   const [error, setError] = useState(undefined);
   const [loading, setloading] = useState(false);
 
+  const token = getToken();
+
   const params = {
     ...axiosParams,
+    headers: {
+      "x-auth-token": token,
+    },
   };
 
   const fetchData = async (refetchParams) => {
+    const refetch_params = { ...refetchParams, "x-auth-token": token };
     setResponse(undefined);
     // dispatch({ type: AppStateActionType.START_LOADING });
     setloading(true);
@@ -30,7 +37,7 @@ const useFetch = (axiosParams, options) => {
       // await tokenRefresh();
 
       const result = await axios.request({
-        ...(refetchParams ? refetchParams : params),
+        ...(refetchParams ? refetch_params : params),
         url: params.url,
       });
 
