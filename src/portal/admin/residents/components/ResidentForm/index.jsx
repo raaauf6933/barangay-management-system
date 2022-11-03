@@ -91,7 +91,10 @@ const ResidentForm = (props) => {
               label={<span className="form-label">Email</span>}
               name="email"
               labelCol={{ span: 24 }}
-              rules={[{ type: "email", message: "Input valid email" }]}
+              rules={[
+                { required: true, message: "This field is required" },
+                { type: "email", message: "Input valid email" },
+              ]}
             >
               <Input size="large" placeholder="Enter Email" />
             </Form.Item>

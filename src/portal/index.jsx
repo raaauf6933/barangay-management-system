@@ -28,6 +28,10 @@ import ResidentDetails from "./admin/residents/views/ResidentDetails";
 
 import UsersList from "./admin/users/views/UsersList";
 import MyProfile from "./myProfile";
+import BlotterList from "./admin/blotter/views/BlotterList";
+import BlotterReportCreate from "./admin/blotter/views/BlotterReportCreate";
+import BlotterReportView from "./admin/blotter/views/BlotterReportView";
+import BlotterReportEdit from "./admin/blotter/views/BlotterReportEdit";
 
 const Portal = () => {
   return (
@@ -96,8 +100,10 @@ const Routes = () => {
                   <Route path="create" element={<h1>Test details</h1>} />
                 </Route>
                 <Route path="blotter">
-                  <Route index element={<h1>Test Blotter List</h1>} />
-                  <Route path="create" element={<h1>Test details</h1>} />
+                  <Route index element={<BlotterList />} />
+                  <Route path="create" element={<BlotterReportCreate />} />
+                  <Route path=":id" element={<BlotterReportView />} />
+                  <Route path="edit/:id" element={<BlotterReportEdit />} />
                 </Route>
                 <Route path="officials_management">
                   <Route path="positions">

@@ -1,6 +1,4 @@
-// playground requires you to assign document definition to a variable called dd
-
-const BarangayClearanceTemplate = () => {
+const IndigentCertificate = () => {
   return {
     info: {
       title: "awesome Document",
@@ -61,7 +59,7 @@ const BarangayClearanceTemplate = () => {
           body: [
             [
               {
-                text: ["BARANGAY OFFICIALS \n", "2018-2022"],
+                text: ["Barangay Officials \n", "2018-2022"],
                 alignment: "center",
                 border: [false, true, false, false],
                 margin: [0, 10, 5, 0],
@@ -69,7 +67,7 @@ const BarangayClearanceTemplate = () => {
               {
                 text: [
                   {
-                    text: "C E R T I F I C A T I O N \n\n\n",
+                    text: "I N D I G E N T  C E R T I F I C A T E\n\n\n",
                     alignment: "center",
                     fontSize: 20,
                     decoration: "underline",
@@ -93,21 +91,15 @@ const BarangayClearanceTemplate = () => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: " {Age} ",
+                    text: " of legal age, ",
                     bold: true,
                     lineHeight: 1.6,
                     alignment: "left",
                     preserveLeadingSpaces: true,
                   },
+
                   {
-                    text: "years of age, ",
-                    bold: true,
-                    lineHeight: 1.6,
-                    alignment: "left",
-                    preserveLeadingSpaces: true,
-                  },
-                  {
-                    text: "is a bonafied resident of Barangay 845 Zone 92 with postal address",
+                    text: "is a bonafied resident of Barangay 845 Zone 92 with postal address at ",
                     lineHeight: 1.6,
                     alignment: "left",
                     preserveLeadingSpaces: true,
@@ -121,7 +113,20 @@ const BarangayClearanceTemplate = () => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: " Pandacan, Manila 1011. \n\n",
+                    text: " Pandacan, Manila 1011. ",
+                    bold: true,
+                    lineHeight: 1.6,
+                    alignment: "left",
+                    preserveLeadingSpaces: true,
+                  },
+                  {
+                    text: "Has been classified to be a member of ",
+                    lineHeight: 1.6,
+                    alignment: "left",
+                    preserveLeadingSpaces: true,
+                  },
+                  {
+                    text: "Indigent Family and of Low Income Bracket \n\n",
                     bold: true,
                     lineHeight: 1.6,
                     alignment: "left",
@@ -438,4 +443,4 @@ const BarangayClearanceTemplate = () => {
   };
 };
 
-export default BarangayClearanceTemplate;
+export default IndigentCertificate;
