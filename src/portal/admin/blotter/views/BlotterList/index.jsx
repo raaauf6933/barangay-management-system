@@ -4,40 +4,33 @@ import { PlusOutlined } from "@ant-design/icons";
 import Table from "../../../../components/Table";
 import Button from "../../../../components/Button";
 import PageHeader from "../../../../components/PageHeader";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import createDialogActionHandler from "./../../../../utils/createActionHandler";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../../../../hooks/useFetch";
-import usePost from "../../../../../hooks/usePost";
 import { columns, parseResponse } from "../../utils";
-import { UsersListPathDetails, UsersListPathUrl } from "../../url";
-import { GET_USERS, CREATE_USER, GET_USER, EDIT_USER } from "../../api";
-import UserFormModal from "../../components/UserFormModal";
-import useNotify from "../../../../hooks/useNotify";
+
+import { GET_BLOTTER_REPORTS } from "../../api";
+import { BlotterDetailssUrl } from "../../url";
 
 const BlotterList = () => {
   const navigate = useNavigate();
-  const notify = useNotify();
 
-  const [openModal, closeModal] = createDialogActionHandler(navigate, null, "");
-
-  const { loading, response, refetch } = useFetch({
-    url: GET_USERS,
+  const { loading, response } = useFetch({
+    url: GET_BLOTTER_REPORTS,
   });
 
   const data = parseResponse(response);
-
   return (
     <>
       <Card>
         {" "}
-        <PageHeader title="Users">
+        <PageHeader title="Blotter">
           <Button
             type="primary"
-            onClick={() => openModal("createUser")}
+            onClick={() => navigate("create")}
             icon={<PlusOutlined />}
             mobileView
           >
-            <b>Create User</b>
+            <b>Create Report</b>
           </Button>
         </PageHeader>
         <div className="responsive-table">
@@ -45,7 +38,7 @@ const BlotterList = () => {
             columns={columns}
             dataSource={data}
             loading={loading}
-            searchColumns={["name"]}
+            searchColumns={["compliant"]}
             // pagination={{
             //   showTotal: (test) => {
             //     console.log(test);
@@ -59,7 +52,7 @@ const BlotterList = () => {
             onChange={() => console.log()}
             onRow={(record) => ({
               onClick: () => {
-                navigate("editUser", { id: record.id });
+                navigate(BlotterDetailssUrl(record.id));
               },
             })}
             size="large"

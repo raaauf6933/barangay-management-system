@@ -45,7 +45,7 @@ const User = () => {
     UsersListPathUrl
   );
 
-  const [createUser] = usePost({
+  const [createUser, createUserOpts] = usePost({
     onComplete: () => {
       refetch();
       notify("success", "New user has been added!");
@@ -56,7 +56,7 @@ const User = () => {
     },
   });
 
-  const [editUser] = usePost({
+  const [editUser, editUserOpts] = usePost({
     onComplete: () => {
       refetch();
       notify("success", "User has been successfully changed!");
@@ -141,6 +141,7 @@ const User = () => {
           open={searchParams.get("action") === "createUser"}
           close={() => closeModal()}
           onSubmit={handleCreateUser}
+          loading={createUserOpts.loading}
         />
         <UserFormModal
           title="Edit User"
@@ -150,6 +151,7 @@ const User = () => {
           data={user}
           onSubmit={handleEditUser}
           type="edit"
+          loading={editUserOpts.loading}
         />
       </Card>
     </>

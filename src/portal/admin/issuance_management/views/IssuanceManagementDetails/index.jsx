@@ -9,15 +9,37 @@ import { EDIT_RESIDENT_ISSUANCE, GET_RESIDENT_ISSUANCE } from "../../api";
 import IssuanceForm from "../../components/IssuanceForm";
 import { IssuanceMngtListPath } from "../../url";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
 import BarangayClearanceTemplate from "../../pdf-templates/barangay_clearance";
+import IndigentCertificateTemplate from "../../pdf-templates/indigent_certificate";
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+pdfMake.fonts = {
+  ...pdfMake.fonts,
+  basker: {
+    normal:
+      "https://res.cloudinary.com/dlwccjs49/raw/upload/v1667038743/fonts/Baskervville-Regular_y6wlll.ttf",
+  },
+  Roboto: {
+    normal:
+      "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf",
+    bold: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf",
+    italics:
+      "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf",
+    bolditalics:
+      "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf",
+  },
+  dafoe: {
+    normal:
+      "https://res.cloudinary.com/dlwccjs49/raw/upload/v1667040253/fonts/MrDafoe-Regular_l57lv4.ttf",
+  },
+};
 
 const IssuanceManagementDetails = () => {
   const notify = useNotify();
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const issuance_type = Form.useWatch(["issuance_type"], form);
   const { id } = useParams();
 
   const { response, loading } = useFetch({
@@ -69,7 +91,11 @@ const IssuanceManagementDetails = () => {
   }, [loading]);
 
   const handlePrintPdf = () => {
-    pdfMake.createPdf(BarangayClearanceTemplate()).open();
+    if (issuance_type === 1 || issuance_type === 3) {
+      pdfMake.createPdf(BarangayClearanceTemplate()).open();
+    } else {
+      pdfMake.createPdf(IndigentCertificateTemplate()).open();
+    }
   };
 
   return (

@@ -56,6 +56,12 @@ const Status = (props) => {
               {"APPROVED".toUpperCase()}
             </Tag>
           );
+        case "SOLVED":
+          return (
+            <Tag color="green" key={status}>
+              {"SOLVED".toUpperCase()}
+            </Tag>
+          );
         default:
           return <SkeletonP active></SkeletonP>;
       }

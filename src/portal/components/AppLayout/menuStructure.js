@@ -120,7 +120,7 @@ export const createMenuStructure = () => {
     {
       key: "/portal/admin/users",
       icon: <UserOutlined />,
-      label: "Users",
+      label: "Users Authentication",
       permission: [PermissionEnum.ADMIN],
       url: "/portal/admin/users",
     },
@@ -129,7 +129,7 @@ export const createMenuStructure = () => {
 
 export const SettingStructure = () => [
   {
-    key: "/portal/admin/my_profile",
+    key: "/portal/my_profile",
     icon: <CgProfile />,
     label: "My Profile",
     permission: [PermissionEnum.ADMIN, PermissionEnum.RESIDENT],

@@ -20,12 +20,6 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (formData) => {
     const { username, password } = formData;
 
-    if (username === "residence") {
-      setToken("residence");
-
-      return;
-    }
-
     const result = await loginUser({
       url: USER_LOGIN,
       data: {
@@ -47,11 +41,14 @@ export const AuthContextProvider = ({ children }) => {
 
     if (!token) return null;
 
-    if (token === "residence") return "residence";
     const decoded_token = jwt_decode(token);
 
     if (decoded_token.role === "Admin") {
       return "admin";
+    }
+
+    if (decoded_token.role === "Resident") {
+      return "residence";
     }
   };
 

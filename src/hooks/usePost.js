@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { getToken } from "../portal/context/auth/utils";
 
 // default configs
 axios.defaults.baseURL = process.env.REACT_APP_API_BASEURL;
@@ -13,15 +14,17 @@ const usePost = (props) => {
   const [error, setError] = useState();
   const [loading, setloading] = useState(false);
 
+  const token = getToken();
+
   const callFn = async (params) => {
     // dispatch({ type: AppStateActionType.START_LOADING });
     setloading(true);
     // params config
     const axiosParams = {
       ...params,
-      //   headers: {
-      //     Authorization: token
-      //   },
+      headers: {
+        "x-auth-token": token,
+      },
       method: "POST",
     };
 
