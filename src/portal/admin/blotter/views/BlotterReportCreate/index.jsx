@@ -32,9 +32,11 @@ const BlotterReportCreate = () => {
   });
 
   const initialData = {
-    resident: null,
+    complainant: null,
     respondent: null,
     statement: "",
+    respondent_statement: "",
+    resolution: "",
     incharge: "",
   };
 

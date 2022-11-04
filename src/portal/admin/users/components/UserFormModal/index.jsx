@@ -64,7 +64,7 @@ const UserFormModal = (props) => {
           >
             <Input size="large" />
           </Form.Item>
-          <Divider>
+          {/* <Divider>
             {" "}
             <Typography.Text>Login Credentials</Typography.Text>
           </Divider>
@@ -117,7 +117,7 @@ const UserFormModal = (props) => {
             dependencies={["password"]}
           >
             <Input size="large" type="password" />
-          </Form.Item>
+          </Form.Item> */}
         </Modal>
       </Form>
     </>

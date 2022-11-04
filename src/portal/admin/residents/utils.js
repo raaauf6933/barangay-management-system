@@ -36,6 +36,7 @@ export const columns = [
     title: "Is Voter",
     key: "isvoter",
     dataIndex: "isvoter",
+    render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
   },
   {
     title: "Status",
@@ -48,12 +49,14 @@ export const columns = [
 ];
 
 export const parseResponse = (response) => {
+  console.log(response);
   return response?.data?.residents
     .map((e) => ({
       key: e.id,
       id: e.id,
       name: `${e.first_name} ${e.last_name}`,
       age: moment().diff(e.birth_date, "years"),
+      isvoter: e.is_voter ? "YES" : "NO",
       gender: e.gender,
       status: e.status,
     }))

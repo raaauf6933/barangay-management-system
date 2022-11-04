@@ -9,7 +9,8 @@ const ResidentForm = (props) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const formStatus = Form.useWatch("status", form);
-
+  const formIsVoter = Form.useWatch("is_voter", form);
+  console.log(data);
   const initialData = {
     first_name: null || data?.first_name,
     middle_name: null || data?.middle_name,
@@ -22,6 +23,7 @@ const ResidentForm = (props) => {
     civil_status: null || data?.civil_status,
     citizenship: data?.citizenship || "Filipino",
     status: data?.status !== undefined ? data?.status : true,
+    is_voter: data?.is_voter,
   };
 
   useEffect(() => {
@@ -131,7 +133,7 @@ const ResidentForm = (props) => {
               <Input size="large" placeholder="Enter Address" />
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
             <Form.Item
               label={<span className="form-label">Civil Status</span>}
               name="civil_status"
@@ -146,7 +148,7 @@ const ResidentForm = (props) => {
               </Select>
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
             <Form.Item
               label={<span className="form-label">Citizenship</span>}
               name="citizenship"
@@ -160,6 +162,21 @@ const ResidentForm = (props) => {
                   </>
                 ))}
               </Select>
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+            <Form.Item
+              label={<span className="form-label">Is Voter</span>}
+              name="is_voter"
+              labelCol={{ span: 24 }}
+              rules={[{ required: true, message: "This field is required" }]}
+            >
+              <Switch
+                // onChange={(e) => form.setFieldValue("status", e)}
+                checkedChildren="Yes"
+                unCheckedChildren="No"
+                checked={formIsVoter}
+              />
             </Form.Item>
           </Col>
           <Col xs={24} sm={24} md={24} lg={24} xl={24}>

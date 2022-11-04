@@ -23,44 +23,69 @@ const BlotterForm = (props) => {
   return (
     <>
       <Form.Item
-        label={<span className="form-label">Complainant</span>}
-        name="resident"
+        label={<span className="form-label">Complainant (Full Name)</span>}
+        name="complainant"
         labelCol={{ span: 24 }}
         rules={[{ required: true, message: "This field is required" }]}
       >
-        <SingleSelect
-          placeholder="Search Resident"
+        <Input
           size="large"
-          name="resident"
-          fetchOptions={getResidents}
-          searchValue={initialData?.resident_label}
-          disabled={initialData?.resident_label || loading}
+          placeholder="Enter Complainant Name (ex. Juan Dela Cruz)"
         />
       </Form.Item>
-
       <Form.Item
-        label={<span className="form-label">Respondent</span>}
-        name="respondent"
-        labelCol={{ span: 24 }}
-        rules={[{ required: true, message: "This field is required" }]}
-      >
-        <Input size="large" />
-      </Form.Item>
-      <Form.Item
-        label={<span className="form-label">In-Charge </span>}
-        name="incharge"
-        labelCol={{ span: 24 }}
-        rules={[{ required: true, message: "This field is required" }]}
-      >
-        <Input size="large" />
-      </Form.Item>
-      <Form.Item
-        label={<span className="form-label">Statement</span>}
+        label={<span className="form-label">Complainant Statement</span>}
         name="statement"
         labelCol={{ span: 24 }}
         rules={[{ required: true, message: "This field is required" }]}
       >
-        <Input.TextArea size="large" rows={4} />
+        <Input.TextArea
+          size="large"
+          rows={4}
+          placeholder="Enter Complainant Statement"
+        />
+      </Form.Item>
+      <Form.Item
+        label={<span className="form-label">Respondent (Full Name)</span>}
+        name="respondent"
+        labelCol={{ span: 24 }}
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <Input
+          size="large"
+          placeholder="Enter Respondent Name (ex. Juan Dela Cruz)"
+        />
+      </Form.Item>
+      <Form.Item
+        label={<span className="form-label">Respondent Statement</span>}
+        name="respondent_statement"
+        labelCol={{ span: 24 }}
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <Input.TextArea
+          size="large"
+          rows={4}
+          placeholder="Enter Respondent Statement"
+        />
+      </Form.Item>
+      <Form.Item
+        label={<span className="form-label">In-Charge (Full Name)</span>}
+        name="incharge"
+        labelCol={{ span: 24 }}
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <Input
+          size="large"
+          placeholder="Enter In-Charge Name (ex. Juan Dela Cruz)"
+        />
+      </Form.Item>
+      <Form.Item
+        label={<span className="form-label">Resolution</span>}
+        name="resolution"
+        labelCol={{ span: 24 }}
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <Input.TextArea size="large" rows={4} placeholder="Enter Resolution" />
       </Form.Item>
       {initialData?.status !== undefined ? (
         <>
@@ -80,12 +105,12 @@ const BlotterForm = (props) => {
               <Option value="PENDING">
                 {" "}
                 <Tag color="magenta">
-                  <strong>Pending</strong>
+                  <strong>Pending / Ongoing</strong>
                 </Tag>
               </Option>
               <Option value="SOLVED">
                 <Tag color="green">
-                  <strong>SOLVED</strong>
+                  <strong>Solved</strong>
                 </Tag>
               </Option>
             </Select>

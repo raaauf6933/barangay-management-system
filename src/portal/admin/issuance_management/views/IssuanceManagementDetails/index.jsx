@@ -12,6 +12,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 import BarangayClearanceTemplate from "../../pdf-templates/barangay_clearance";
 import IndigentCertificateTemplate from "../../pdf-templates/indigent_certificate";
+import moment from "moment-timezone";
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 pdfMake.fonts = {
@@ -92,9 +93,33 @@ const IssuanceManagementDetails = () => {
 
   const handlePrintPdf = () => {
     if (issuance_type === 1 || issuance_type === 3) {
-      pdfMake.createPdf(BarangayClearanceTemplate()).open();
+      pdfMake
+        .createPdf(
+          BarangayClearanceTemplate({
+            first_name: data?.Resident?.first_name,
+            last_name: data?.Resident?.last_name,
+            age: moment().diff(
+              moment(data?.Resident?.birth_date).format("YYYY-MM-DD"),
+              "years"
+            ),
+            address: data?.Resident?.address,
+          })
+        )
+        .open();
     } else {
-      pdfMake.createPdf(IndigentCertificateTemplate()).open();
+      pdfMake
+        .createPdf(
+          IndigentCertificateTemplate({
+            first_name: data?.Resident?.first_name,
+            last_name: data?.Resident?.last_name,
+            age: moment().diff(
+              moment(data?.Resident?.birth_date).format("YYYY-MM-DD"),
+              "years"
+            ),
+            address: data?.Resident?.address,
+          })
+        )
+        .open();
     }
   };
 

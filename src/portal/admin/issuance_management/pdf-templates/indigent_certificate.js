@@ -1,11 +1,15 @@
-const IndigentCertificate = () => {
+import moment from "moment-timezone";
+
+const IndigentCertificate = (params) => {
+  const { first_name, last_name, age, address } = params;
+
   return {
-    info: {
-      title: "awesome Document",
-      author: "john doe",
-      subject: "subject of document",
-      keywords: "keywords for document",
-    },
+    // info: {
+    //   title: "awesome Document",
+    //   author: "john doe",
+    //   subject: "subject of document",
+    //   keywords: "keywords for document",
+    // },
     content: [
       {
         columns: [
@@ -83,7 +87,7 @@ const IndigentCertificate = () => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: "{Name n Name},",
+                    text: `${first_name} ${last_name},`,
                     bold: true,
                     lineHeight: 1.6,
                     decoration: "underline",
@@ -105,7 +109,7 @@ const IndigentCertificate = () => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: " {Address} ,",
+                    text: ` ${address} ,`,
                     bold: true,
                     lineHeight: 1.6,
                     decoration: "underline",
@@ -145,7 +149,7 @@ const IndigentCertificate = () => {
                         bold: true,
                       },
                       {
-                        text: " {name} \n\n",
+                        text: " _____ \n\n",
                         bold: true,
                         decoration: "underline",
                       },
@@ -156,12 +160,16 @@ const IndigentCertificate = () => {
                   {
                     text: [
                       {
-                        text: "\t\t Issued this {4th} day of ",
+                        text: `\t\t Issued this ${moment().format(
+                          "Do"
+                        )} day of `,
                         lineHeight: 1.6,
                         preserveLeadingSpaces: true,
                       },
                       {
-                        text: "{Month, Year} ",
+                        text: `${moment().format("MMMM")}, ${moment().format(
+                          "Y"
+                        )} `,
                         lineHeight: 1.6,
                         preserveLeadingSpaces: true,
                         bold: true,

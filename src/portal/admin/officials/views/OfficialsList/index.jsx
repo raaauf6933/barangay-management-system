@@ -43,6 +43,9 @@ const OfficialsList = () => {
 
   const { loading: loadingPositions, response: responsePositions } = useFetch({
     url: GET_POSITIONS,
+    params: {
+      status: 1,
+    },
   });
 
   const [openModal, closeModal] = createDialogActionHandler(

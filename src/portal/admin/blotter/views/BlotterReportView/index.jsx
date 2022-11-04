@@ -71,8 +71,7 @@ const BlotterReportView = () => {
             fontWeight: 600,
           }}
         >
-          {blotter_data?.Resident?.first_name}{" "}
-          {blotter_data?.Resident?.last_name}
+          {blotter_data?.complainant}
         </Descriptions.Item>
         <Descriptions.Item
           label="Respondent"
@@ -114,12 +113,30 @@ const BlotterReportView = () => {
         </Descriptions.Item>
         <Descriptions.Item
           label="Statement"
-          span={2}
+          span={5}
           labelStyle={{
             fontWeight: 600,
           }}
         >
           {blotter_data?.statement}
+        </Descriptions.Item>
+        <Descriptions.Item
+          label="Respondent Statement"
+          span={5}
+          labelStyle={{
+            fontWeight: 600,
+          }}
+        >
+          {blotter_data?.respondent_statement}
+        </Descriptions.Item>
+        <Descriptions.Item
+          label="Resolution"
+          span={5}
+          labelStyle={{
+            fontWeight: 600,
+          }}
+        >
+          {blotter_data?.resolution}
         </Descriptions.Item>
       </Descriptions>
       <Divider />

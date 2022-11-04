@@ -33,14 +33,24 @@ export const columns = [
   },
   {
     title: "Created At",
-    key: "isvoter",
-    dataIndex: "isvoter",
+    key: "createdAt",
+    dataIndex: "createdAt",
   },
   {
     title: "Status",
     key: "status",
     dataIndex: "status",
-    render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
+    render: (status) => (
+      <>
+        {
+          <Status
+            type="DEFAULT"
+            status={status}
+            text={status === "PENDING" ? "PENDING / ONGOING" : null}
+          />
+        }
+      </>
+    ),
   },
 ];
 
@@ -49,7 +59,7 @@ export const parseResponse = (response) => {
     .map((e) => ({
       key: e.id,
       id: e.id,
-      compliant: `${e?.Resident?.first_name} ${e.Resident?.last_name}`,
+      compliant: `${e?.complainant}`,
       respondent: e.respondent,
       incharge: e.in_charge,
       createdAt: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
