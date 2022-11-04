@@ -4,8 +4,8 @@ import { Tag, Skeleton } from "antd";
 const { Button: SkeletonP } = Skeleton;
 
 const Status = (props) => {
-  const { type, status } = props;
-
+  const { type, status, text } = props;
+  console.log(status);
   switch (type) {
     case "CERTIFICATES":
       switch (status) {
@@ -41,7 +41,7 @@ const Status = (props) => {
         case "PENDING":
           return (
             <Tag color="red" key={status}>
-              {"PENDING".toUpperCase()}
+              {text ? text : "PENDING".toUpperCase()}
             </Tag>
           );
         case "CONFIRMED":
@@ -56,10 +56,28 @@ const Status = (props) => {
               {"APPROVED".toUpperCase()}
             </Tag>
           );
+        case "RELEASED":
+          return (
+            <Tag color="blue" key={status}>
+              {"RELEASED".toUpperCase()}
+            </Tag>
+          );
         case "SOLVED":
           return (
             <Tag color="green" key={status}>
               {"SOLVED".toUpperCase()}
+            </Tag>
+          );
+        case "YES":
+          return (
+            <Tag color="green" key={status}>
+              {"YES".toUpperCase()}
+            </Tag>
+          );
+        case "NO":
+          return (
+            <Tag color="blue" key={status}>
+              {"NO".toUpperCase()}
             </Tag>
           );
         default:

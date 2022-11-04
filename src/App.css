@@ -11,3 +11,7 @@ main {
 /* .ant-input {
   text-transform: capitalize;
 } */
+
+.ant-descriptions-item {
+  padding: 1em;
+}

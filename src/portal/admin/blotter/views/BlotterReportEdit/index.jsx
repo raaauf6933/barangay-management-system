@@ -43,11 +43,12 @@ const BlotterReportEdit = () => {
   });
 
   const initialData = {
-    resident: data?.complainant,
-    resident_label: `${data?.Resident?.first_name}  ${data?.Resident?.middle_name} ${data?.Resident?.last_name}`,
+    complainant: data?.complainant,
     respondent: data?.respondent,
     statement: data?.statement,
     incharge: data?.in_charge,
+    respondent_statement: data?.respondent_statement,
+    resolution: data?.resolution,
     status: data?.status,
   };
 

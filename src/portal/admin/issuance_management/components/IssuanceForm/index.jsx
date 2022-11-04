@@ -177,7 +177,12 @@ const IssuanceForm = (props) => {
               </Option>
               <Option value="APPROVED">
                 <Tag color="green">
-                  <strong>Approved</strong>
+                  <strong>Approved / Ongoing</strong>
+                </Tag>
+              </Option>
+              <Option value="RELEASED">
+                <Tag color="blue">
+                  <strong>Released</strong>
                 </Tag>
               </Option>
             </Select>
@@ -189,7 +194,8 @@ const IssuanceForm = (props) => {
           textAlign: "center",
         }}
       >
-        {initialData?.status === "APPROVED" ? (
+        {initialData?.status === "APPROVED" ||
+        initialData?.status === "RELEASED" ? (
           <Button
             type="primary"
             ghost

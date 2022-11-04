@@ -1,13 +1,17 @@
 // playground requires you to assign document definition to a variable called dd
 
-const BarangayClearanceTemplate = () => {
+import moment from "moment-timezone";
+
+const BarangayClearanceTemplate = (params) => {
+  const { first_name, last_name, age, address } = params;
+
   return {
-    info: {
-      title: "awesome Document",
-      author: "john doe",
-      subject: "subject of document",
-      keywords: "keywords for document",
-    },
+    // info: {
+    //   title: "awesome Document",
+    //   author: "john doe",
+    //   subject: "subject of document",
+    //   keywords: "keywords for document",
+    // },
     content: [
       {
         columns: [
@@ -79,13 +83,13 @@ const BarangayClearanceTemplate = () => {
                     alignment: "left",
                   },
                   {
-                    text: "\t\t This is to certify that, ",
+                    text: "\t\t This is to certify that ",
                     lineHeight: 1.6,
                     alignment: "left",
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: "{Name n Name},",
+                    text: `${first_name} n ${last_name},`,
                     bold: true,
                     lineHeight: 1.6,
                     decoration: "underline",
@@ -93,7 +97,7 @@ const BarangayClearanceTemplate = () => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: " {Age} ",
+                    text: ` ${age} `,
                     bold: true,
                     lineHeight: 1.6,
                     alignment: "left",
@@ -113,7 +117,7 @@ const BarangayClearanceTemplate = () => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: " {Address} ,",
+                    text: ` ${address} ,`,
                     bold: true,
                     lineHeight: 1.6,
                     decoration: "underline",
@@ -140,9 +144,9 @@ const BarangayClearanceTemplate = () => {
                         bold: true,
                       },
                       {
-                        text: " {name} \n\n",
+                        text: " _____ \n\n",
                         bold: true,
-                        decoration: "underline",
+                        // decoration: "underline",
                       },
                     ],
 
@@ -151,12 +155,16 @@ const BarangayClearanceTemplate = () => {
                   {
                     text: [
                       {
-                        text: "\t\t Issued this {4th} day of ",
+                        text: `\t\t Issued this ${moment().format(
+                          "Do"
+                        )} day of `,
                         lineHeight: 1.6,
                         preserveLeadingSpaces: true,
                       },
                       {
-                        text: "{Month, Year} ",
+                        text: `${moment().format("MMMM")}, ${moment().format(
+                          "Y"
+                        )} `,
                         lineHeight: 1.6,
                         preserveLeadingSpaces: true,
                         bold: true,
