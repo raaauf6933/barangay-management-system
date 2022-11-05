@@ -22,10 +22,10 @@ const IssuanceForm = (props) => {
       label: "Certificate Of Residency",
       value: 3,
     },
-    {
-      label: "Barangay Business Clearance",
-      value: 4,
-    },
+    // {
+    //   label: "Barangay Business Clearance",
+    //   value: 4,
+    // },
   ];
 
   // const isFormIsValid =

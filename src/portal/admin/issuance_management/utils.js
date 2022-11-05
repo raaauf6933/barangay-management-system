@@ -3,7 +3,7 @@ import moment from "moment-timezone";
 
 export const columns = [
   {
-    title: "ID",
+    title: "Reference No.",
     dataIndex: "id",
     key: "id",
     render: (text) => <span className="table-body">{text}</span>,

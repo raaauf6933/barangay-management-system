@@ -27,7 +27,7 @@ function beforeUpload(file) {
 }
 
 const UploadMultiImage = (props) => {
-  const { change, data, onDelete, disabled } = props;
+  const { change, data, onDelete, disabled, max } = props;
 
   const initialData = data
     ? data.map((e) => ({
@@ -39,6 +39,8 @@ const UploadMultiImage = (props) => {
         url: e.url,
       }))
     : [];
+
+  console.log(initialData);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
@@ -96,7 +98,7 @@ const UploadMultiImage = (props) => {
     <>
       <Upload
         // action={(e) => console.log(e)}
-        maxCount={2}
+        maxCount={max ? max : 2}
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
@@ -119,7 +121,7 @@ const UploadMultiImage = (props) => {
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
-      <span>(Max: 2 per upload & must less than 1mb)</span>
+      <span>(Max: {max} per upload & must less than 1mb)</span>
       <Modal
         open={previewOpen}
         title={previewTitle}

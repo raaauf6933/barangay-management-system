@@ -85,4 +85,16 @@ export const useAuth = () => {
   };
 };
 
+export const useUser = () => {
+  const token = getToken();
+
+  if (!token) return null;
+
+  const decoded_token = jwt_decode(token);
+
+  return {
+    user: decoded_token,
+  };
+};
+
 export default AuthContext;
