@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Col, Form, Input, Row } from "antd";
+import { Button, Card, Col, Form, Input, Row, Typography } from "antd";
 import "./style.css";
 import useFetch from "../../hooks/useFetch";
 import { GET_MY_PROFILE, UPDATE_PROFILE } from "./api";
@@ -21,6 +21,7 @@ const MyProfile = () => {
     first_name: user?.first_name || null,
     last_name: user?.last_name || null,
     email: user?.email,
+    current_password: null,
     new_password: "",
     confirm_password: "",
   };
@@ -43,6 +44,7 @@ const MyProfile = () => {
     updateProfile({
       url: UPDATE_PROFILE,
       data: {
+        current_password: formData.current_password,
         new_password: formData.new_password,
       },
     });
@@ -55,6 +57,13 @@ const MyProfile = () => {
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Card>
             <div className="my-profile-content">
+              <div
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <Typography.Title>My Account</Typography.Title>
+              </div>
               <Form
                 form={form}
                 initialValues={initialValue}
@@ -89,6 +98,19 @@ const MyProfile = () => {
                   //   ]}
                 >
                   <Input size="large" disabled />
+                </Form.Item>
+                <Form.Item
+                  label={<span className="form-label">Current Password</span>}
+                  name="current_password"
+                  labelCol={{ span: 24 }}
+                  rules={[
+                    { required: true, message: "This field is required" },
+                    {
+                      min: 6,
+                    },
+                  ]}
+                >
+                  <Input.Password size="large" />
                 </Form.Item>
                 <Form.Item
                   label={<span className="form-label">New Password</span>}

@@ -4,26 +4,47 @@ import Status from "../../../../components/Status";
 import PageHeader from "../../../../components/PageHeader";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import { CreatePath_Choose } from "../../url";
+import { GET_RESIDENT_ISSUANCES } from "./../../../../admin/issuance_management/api";
+import useFetch from "./../../../../../hooks/useFetch";
+import { IssuanceDetailssUrl } from "../../url";
 
 const IssuanceList = () => {
   const navigate = useNavigate();
 
+  const { response } = useFetch({
+    url: GET_RESIDENT_ISSUANCES,
+    params: {
+      resident_id: 29,
+    },
+  });
+
+  console.log(response);
+
   const columns = [
     {
       title: "Reference No.",
-      dataIndex: "reference_no",
-      key: "reference_no",
+      dataIndex: "id",
+      key: "id",
       render: (text) => <span className="table-body">{text}</span>,
     },
     {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
+      title: "Request Type",
+      dataIndex: "service",
+      key: "service",
       render: (text) => <span className="table-body">{text}</span>,
     },
     {
-      title: "Created",
+      title: "Payment Status",
+      key: "payment_status",
+      dataIndex: "payment_status",
+      render: (status) => (
+        <>
+          {<Status type="DEFAULT" status={status ? "CONFIRMED" : "PENDING"} />}
+        </>
+      ),
+    },
+    {
+      title: "Requested At",
       dataIndex: "created",
       key: "created",
       render: (text) => <span className="table-body">{text}</span>,
@@ -32,41 +53,29 @@ const IssuanceList = () => {
       title: "Status",
       key: "status",
       dataIndex: "status",
-      render: (status) => <>{<Status type="CERTIFICATES" status={status} />}</>,
+      render: (status) => <>{<Status type="DEFAULT" status={status} />}</>,
     },
-    // {
-    //   title: "Action",
-    //   key: "action",
-    //   render: (text, record) => (
-    //     <Space size="middle">
-    //       <a>Invite {record.name}</a>
-    //       <a>Delete</a>
-    //     </Space>
-    //   ),
-    // },
   ];
 
-  const data = [
-    {
-      key: "1",
-      reference_no: "00001",
-      type: "BARANGAY CLEARANCE",
-      created: moment().format("LLL"),
-      status: "PENDING",
-    },
-    {
-      key: "2",
-      reference_no: "00002",
-      type: "BARANGAY CLEARANCE",
-      created: moment().format("LLL"),
-      status: "FOR_PICKUP",
-    },
-  ];
+  const data = response?.data?.issuance_residents
+    ? response?.data?.issuance_residents.map((e) => ({
+        key: e.id,
+        id: e.id,
+        service: e.Service_type.name,
+        payment_status: e.Service_transaction.isPaid,
+        created: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
+        status: e.status,
+      }))
+    : [];
+
   return (
     <>
       <Card>
         <PageHeader title="Issuance">
-          <Button type="primary" onClick={() => navigate(CreatePath_Choose)}>
+          <Button
+            type="primary"
+            onClick={() => navigate("/portal/residence/issuance/create")}
+          >
             <b>Create Request</b>
           </Button>
         </PageHeader>
@@ -85,6 +94,11 @@ const IssuanceList = () => {
             //     console.log(test);
             //   },
             // }}
+            onRow={(record) => ({
+              onClick: () => {
+                navigate(IssuanceDetailssUrl(record.id));
+              },
+            })}
             onChange={() => console.log()}
           />
         </div>

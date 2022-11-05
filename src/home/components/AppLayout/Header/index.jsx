@@ -4,7 +4,8 @@ import { createMenuStructure } from "./../menuStructure";
 import Menu from "./components/Menu";
 import Drawer from "./components/Drawer";
 import { useNavigate } from "react-router-dom";
-import logo from "./../../../../assets/barangay_logo.png";
+// import logo from "./../../../../assets/barangay_logo.png";
+import logo from "./../../../../assets/logo_1_big-modified.png";
 import { MenuFoldOutlined } from "@ant-design/icons";
 const { useBreakpoint } = Grid;
 const { Header } = Layout;
@@ -26,7 +27,7 @@ const AppHeader = () => {
       >
         <div style={{ whiteSpace: "nowrap", color: "white", width: "50%" }}>
           <img src={logo} alt="logo" className="logo" loading="lazy" />
-          <span>Official Website of Barangay 845</span>
+          <span> Official Website of Barangay 845</span>
           <Button
             type="ghost"
             shape="default"

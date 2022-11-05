@@ -6,6 +6,7 @@ import {
   UserOutlined,
   BellOutlined,
   SnippetsOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
@@ -120,7 +121,7 @@ export const createMenuStructure = () => {
     {
       key: "/portal/admin/users",
       icon: <UserOutlined />,
-      label: "Users Authentication",
+      label: "Admin Authentication",
       permission: [PermissionEnum.ADMIN],
       url: "/portal/admin/users",
     },
@@ -129,9 +130,16 @@ export const createMenuStructure = () => {
 
 export const SettingStructure = () => [
   {
+    key: "/portal/admin/content_settings",
+    icon: <AppstoreOutlined />,
+    label: "Content Management",
+    permission: [PermissionEnum.ADMIN],
+    url: "/portal/admin/content_settings",
+  },
+  {
     key: "/portal/my_profile",
     icon: <CgProfile />,
-    label: "My Profile",
+    label: "My Account",
     permission: [PermissionEnum.ADMIN, PermissionEnum.RESIDENT],
     url: "/portal/my_profile",
   },

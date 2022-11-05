@@ -64,60 +64,64 @@ const UserFormModal = (props) => {
           >
             <Input size="large" />
           </Form.Item>
-          {/* <Divider>
-            {" "}
-            <Typography.Text>Login Credentials</Typography.Text>
-          </Divider>
-          <Form.Item
-            label={<span className="form-label">Email</span>}
-            name="email"
-            labelCol={{ span: 24 }}
-            rules={[
-              { required: true, message: "This field is required" },
-              { type: "email", message: "Input valid email!" },
-            ]}
-          >
-            <Input size="large" />
-          </Form.Item>
-          <Form.Item
-            label={<span className="form-label">Password</span>}
-            name="password"
-            labelCol={{ span: 24 }}
-            rules={[
-              {
-                required: type === "edit" ? false : true,
-                message: "This field is required",
-              },
-              {
-                min: 6,
-                message: "Password should be minimum of 6 characters",
-              },
-            ]}
-          >
-            <Input size="large" type="password" />
-          </Form.Item>
-          <Form.Item
-            label={<span className="form-label">Confirm Password</span>}
-            name="confirm_password"
-            labelCol={{ span: 24 }}
-            rules={[
-              {
-                required: type === "edit" && !password_ ? false : true,
-                message: "This field is required",
-              },
-              ({ getFieldValue }) => ({
-                validator(rule, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject("Confirm password doesn't match!");
-                },
-              }),
-            ]}
-            dependencies={["password"]}
-          >
-            <Input size="large" type="password" />
-          </Form.Item> */}
+          {type === "edit" ? null : (
+            <>
+              <Divider>
+                {" "}
+                <Typography.Text>Login Credentials</Typography.Text>
+              </Divider>
+              <Form.Item
+                label={<span className="form-label">Email</span>}
+                name="email"
+                labelCol={{ span: 24 }}
+                rules={[
+                  { required: true, message: "This field is required" },
+                  { type: "email", message: "Input valid email!" },
+                ]}
+              >
+                <Input size="large" />
+              </Form.Item>
+              <Form.Item
+                label={<span className="form-label">Password</span>}
+                name="password"
+                labelCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: type === "edit" ? false : true,
+                    message: "This field is required",
+                  },
+                  {
+                    min: 6,
+                    message: "Password should be minimum of 6 characters",
+                  },
+                ]}
+              >
+                <Input size="large" type="password" />
+              </Form.Item>
+              <Form.Item
+                label={<span className="form-label">Confirm Password</span>}
+                name="confirm_password"
+                labelCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: type === "edit" && !password_ ? false : true,
+                    message: "This field is required",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(rule, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject("Confirm password doesn't match!");
+                    },
+                  }),
+                ]}
+                dependencies={["password"]}
+              >
+                <Input size="large" type="password" />
+              </Form.Item>{" "}
+            </>
+          )}
         </Modal>
       </Form>
     </>

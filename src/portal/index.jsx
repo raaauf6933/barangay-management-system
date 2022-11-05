@@ -10,8 +10,7 @@ import ClientAppLayout from "./../home/components/AppLayout";
 
 import Home from "./residence/home";
 import IssuanceList from "./residence/issuance/views/IssuanceList";
-import SelectCertificate from "./residence/issuance/views/IssuanceCreate/view/SelectCertificate";
-import FormCertificate from "./residence/issuance/views/IssuanceCreate/view/FormCertificate";
+import IssuanceCreate from "./residence/issuance/views/IssuanceCreate";
 
 import Dashboard from "./admin/dashboard";
 import AnnouncementList from "./admin/announcements/views/AnnouncementList";
@@ -32,6 +31,8 @@ import BlotterList from "./admin/blotter/views/BlotterList";
 import BlotterReportCreate from "./admin/blotter/views/BlotterReportCreate";
 import BlotterReportView from "./admin/blotter/views/BlotterReportView";
 import BlotterReportEdit from "./admin/blotter/views/BlotterReportEdit";
+import IssuanceView from "./residence/issuance/views/IssuanceView";
+import ContentSettings from "./admin/content_settings";
 
 const Portal = () => {
   return (
@@ -71,14 +72,8 @@ const Routes = () => {
                   <Route index element={<Home />} />
                   <Route path="issuance">
                     <Route index element={<IssuanceList />} />
-                    <Route path="create">
-                      <Route
-                        path="choose_certificate"
-                        element={<SelectCertificate />}
-                      />
-                      <Route path="form" element={<FormCertificate />} />
-                    </Route>
-                    <Route path=":id" element={<h1>Details</h1>} />
+                    <Route path="create" element={<IssuanceCreate />}></Route>
+                    <Route path=":id" element={<IssuanceView />} />
                   </Route>
                 </Route>
               </>
@@ -123,6 +118,10 @@ const Routes = () => {
                 <Route path="users">
                   <Route index element={<UsersList />} />
                   <Route path="create" element={<h1>Test details</h1>} />
+                </Route>
+                <Route path="content_settings">
+                  <Route index element={<ContentSettings />} />
+                  {/* <Route path="create" element={<h1>Test details</h1>} /> */}
                 </Route>
               </Route>
             ) : null}

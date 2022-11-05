@@ -1,5 +1,5 @@
 import React from "react";
-import AppContainer from "./../../components/container";
+import AppContainer from "../../components/container";
 import { Row, Col, Avatar } from "antd";
 import { PhoneFilled, MailFilled } from "@ant-design/icons";
 import "./style.css";
