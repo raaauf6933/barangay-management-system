@@ -5,54 +5,54 @@ import { TbReportSearch, TbReport } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
 import { BiUserCheck } from "react-icons/bi";
 
-export const createDashboardCard = () => [
+export const createDashboardCard = (data) => [
   {
     key: "total_anouncement",
     label: "Total Announcement",
-    value: "2",
+    value: data?.announcemets,
     icon: <BellFilled />,
   },
   {
     key: "total_issuance_request",
     label: "Issuance Request",
-    value: "2",
+    value: data?.issuances,
     icon: <HiOutlineClipboard />,
   },
   {
     key: "pending_issuance_request",
     label: "Pending Issuance Request",
-    value: "2",
+    value: data?.pending_issuances,
     icon: <MdPendingActions />,
   },
   {
     key: "total_registered_resident",
     label: "Registered Resident",
-    value: "2",
+    value: data?.residents,
     icon: <HiOutlineUserGroup />,
   },
 
   {
     key: "total_service_request",
     label: "Blotter Report",
-    value: "2",
+    value: data?.blotters,
     icon: <TbReportSearch />,
   },
   {
     key: "total_service_request",
     label: "Pending Blotter Report",
-    value: "2",
+    value: data?.pending_blotters,
     icon: <TbReport />,
   },
   {
     key: "total_service_request",
     label: "Users",
-    value: "2",
+    value: data?.users,
     icon: <FiUsers />,
   },
   {
     key: "total_service_request",
     label: "Active Users",
-    value: "2",
+    value: data?.active_users,
     icon: <BiUserCheck />,
   },
 ];
