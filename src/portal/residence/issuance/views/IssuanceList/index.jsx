@@ -7,14 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { GET_RESIDENT_ISSUANCES } from "./../../../../admin/issuance_management/api";
 import useFetch from "./../../../../../hooks/useFetch";
 import { IssuanceDetailssUrl } from "../../url";
+import { useUser } from "../../../../context/auth/context";
 
 const IssuanceList = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const { response } = useFetch({
     url: GET_RESIDENT_ISSUANCES,
     params: {
-      resident_id: 29,
+      resident_id: user.id,
     },
   });
 
