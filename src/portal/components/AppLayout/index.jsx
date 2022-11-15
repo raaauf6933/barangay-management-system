@@ -8,6 +8,7 @@ import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import DrawerComponent from "./Drawer";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
 
 const { useBreakpoint } = Grid;
 const { Header, Content, Sider } = Layout;
@@ -20,9 +21,22 @@ const AppLayout = ({ children }) => {
 
   const screens = useBreakpoint();
 
+  const { response } = useFetch({
+    url: "content_settings/get_color",
+  });
+
+  console.log(response);
+
   return (
     <Layout>
-      <Header className="header">
+      <Header
+        className="header"
+        style={{
+          background: response?.data?.result?.value
+            ? response?.data?.result?.value
+            : "#001529",
+        }}
+      >
         <div className="nav-header">
           <div
             style={{

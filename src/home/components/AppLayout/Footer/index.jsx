@@ -1,11 +1,25 @@
 import React from "react";
 import { Layout, Row, Col } from "antd";
 import { EnvironmentFilled, PhoneFilled } from "@ant-design/icons";
+import useFetch from "../../../../hooks/useFetch";
 const { Footer } = Layout;
 
 const FooterComponent = () => {
+  const { response } = useFetch({
+    url: "content_settings/get_color",
+  });
+
+  console.log(response);
+
   return (
-    <Footer className="footer">
+    <Footer
+      className="footer"
+      style={{
+        background: response?.data?.result?.value
+          ? response?.data?.result?.value
+          : "#001529",
+      }}
+    >
       <Row>
         <Col span={12} xl={12} md={24} sm={24} xs={24}>
           <div>

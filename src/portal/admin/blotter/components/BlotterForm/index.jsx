@@ -5,7 +5,14 @@ import { BlotterListPath } from "../../url";
 
 const { Option } = Select;
 const BlotterForm = (props) => {
-  const { refetchResidents, initialData, loading, navigate } = props;
+  const {
+    refetchResidents,
+    initialData,
+    loading,
+    navigate,
+    officials,
+    incharge_value,
+  } = props;
 
   const getResidents = (name) => {
     return refetchResidents({
@@ -19,6 +26,18 @@ const BlotterForm = (props) => {
       }))
     );
   };
+
+  const inChargeChoices = officials
+    ? officials?.map((e) => ({
+        label: `${e.first_name} ${e.last_name} - ${e.Position.name}`,
+        value: e.id,
+      }))
+    : [];
+
+  inChargeChoices?.push({
+    label: `Other`,
+    value: "OTHER",
+  });
 
   return (
     <>
@@ -69,16 +88,33 @@ const BlotterForm = (props) => {
         />
       </Form.Item>
       <Form.Item
+        placeholder="Select In-charge"
         label={<span className="form-label">In-Charge (Full Name)</span>}
         name="incharge"
         labelCol={{ span: 24 }}
         rules={[{ required: true, message: "This field is required" }]}
       >
-        <Input
-          size="large"
-          placeholder="Enter In-Charge Name (ex. Juan Dela Cruz)"
-        />
+        <Select size="large" placeholder="Select In-charge">
+          {inChargeChoices?.map((e) => (
+            <>
+              <Option value={e.value}>{e.label}</Option>
+            </>
+          ))}
+        </Select>
       </Form.Item>
+      {incharge_value === "OTHER" ? (
+        <>
+          <Form.Item
+            placeholder="Input In-charge"
+            label={<span className="form-label">Other</span>}
+            name="other_incharge"
+            labelCol={{ span: 24 }}
+            rules={[{ required: true, message: "This field is required" }]}
+          >
+            <Input placeholder="Input In-charge" size="large" />
+          </Form.Item>
+        </>
+      ) : null}
       <Form.Item
         label={<span className="form-label">Resolution</span>}
         name="resolution"

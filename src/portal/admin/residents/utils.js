@@ -27,6 +27,30 @@ export const columns = [
     // ),
   },
   {
+    title: "House No.",
+    key: "house_no",
+    dataIndex: "house_no",
+    // render: (status) => (
+    //   <>{<Status type="DEFAULT" status={status ? "ACTIVE" : "INACTIVE"} />}</>
+    // ),
+  },
+  {
+    title: "Street",
+    key: "street_address",
+    dataIndex: "street_address",
+    // render: (status) => (
+    //   <>{<Status type="DEFAULT" status={status ? "ACTIVE" : "INACTIVE"} />}</>
+    // ),
+  },
+  {
+    title: "Apartment",
+    key: "apartment",
+    dataIndex: "apartment",
+    // render: (status) => (
+    //   <>{<Status type="DEFAULT" status={status ? "ACTIVE" : "INACTIVE"} />}</>
+    // ),
+  },
+  {
     title: "Gender",
     key: "gender",
     dataIndex: "gender",
@@ -56,6 +80,9 @@ export const parseResponse = (response) => {
       id: e.id,
       name: `${e.first_name} ${e.last_name}`,
       age: moment().diff(e.birth_date, "years"),
+      house_no: e.house_no,
+      street_address: e.street_address,
+      apartment: e.apartment,
       isvoter: e.is_voter ? "YES" : "NO",
       gender: e.gender,
       status: e.status,

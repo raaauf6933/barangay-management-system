@@ -103,6 +103,7 @@ const IssuanceManagementDetails = () => {
               "years"
             ),
             address: data?.Resident?.address,
+            purpose: data?.purpose,
           })
         )
         .open();
@@ -117,6 +118,7 @@ const IssuanceManagementDetails = () => {
               "years"
             ),
             address: data?.Resident?.address,
+            purpose: data?.purpose,
           })
         )
         .open();

@@ -2,7 +2,7 @@ import React from "react";
 import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 
-const MenuComponent = ({ menuStructure, navigate }) => {
+const MenuComponent = ({ menuStructure, navigate, color }) => {
   return (
     <>
       <Menu
@@ -10,6 +10,7 @@ const MenuComponent = ({ menuStructure, navigate }) => {
         mode="horizontal"
         style={{
           width: "100%",
+          background: color.background,
         }}
       >
         {menuStructure
@@ -17,7 +18,13 @@ const MenuComponent = ({ menuStructure, navigate }) => {
               return menu.position === "left" ? (
                 menu.children ? (
                   <>
-                    <SubMenu key={index} title={<b>{menu.label}</b>}>
+                    <SubMenu
+                      key={index}
+                      title={<b>{menu.label}</b>}
+                      style={{
+                        background: color,
+                      }}
+                    >
                       {menu.children.map((subMenu, index) => {
                         return (
                           <Menu.Item
@@ -31,7 +38,13 @@ const MenuComponent = ({ menuStructure, navigate }) => {
                     </SubMenu>
                   </>
                 ) : (
-                  <Menu.Item key={index} onClick={() => navigate(menu.url)}>
+                  <Menu.Item
+                    key={index}
+                    onClick={() => navigate(menu.url)}
+                    style={{
+                      background: color,
+                    }}
+                  >
                     <b>{menu.label}</b>
                   </Menu.Item>
                 )
@@ -48,12 +61,19 @@ const MenuComponent = ({ menuStructure, navigate }) => {
           width: "100%",
           display: "flex",
           justifyContent: "end",
+          background: color.background,
         }}
       >
         {menuStructure
           ? menuStructure.map((menu, index) => {
               return menu.position === "right" ? (
-                <Menu.Item key={index} onClick={() => navigate(menu.url)}>
+                <Menu.Item
+                  key={index}
+                  onClick={() => navigate(menu.url)}
+                  style={{
+                    background: color,
+                  }}
+                >
                   <b>{menu.label}</b>
                 </Menu.Item>
               ) : null;

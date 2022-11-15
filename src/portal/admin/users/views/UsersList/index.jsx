@@ -100,7 +100,7 @@ const User = () => {
     <>
       <Card>
         {" "}
-        <PageHeader title="Users">
+        <PageHeader title="Admin">
           <Button
             type="primary"
             onClick={() => openModal("createUser")}

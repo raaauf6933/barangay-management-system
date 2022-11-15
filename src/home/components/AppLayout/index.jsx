@@ -3,13 +3,26 @@ import { Layout } from "antd";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./style.css";
+import useFetch from "../../../hooks/useFetch";
 const { Content } = Layout;
 
 const AppLayout = ({ children }) => {
+  const { response } = useFetch({
+    url: "content_settings/get_color",
+  });
+
+  console.log(response);
+
   return (
     <>
       <Layout>
-        <Header />
+        <Header
+          style={{
+            background: response?.data?.result?.value
+              ? response?.data?.result?.value
+              : "#001529",
+          }}
+        />
         <Content
           style={{
             marginTop: "3em",

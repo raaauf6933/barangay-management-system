@@ -33,6 +33,13 @@ import BlotterReportView from "./admin/blotter/views/BlotterReportView";
 import BlotterReportEdit from "./admin/blotter/views/BlotterReportEdit";
 import IssuanceView from "./residence/issuance/views/IssuanceView";
 import ContentSettings from "./admin/content_settings";
+import IncidentReportList from "./admin/incident_report/views/IncidentReportList";
+import IncidentReportView from "./admin/incident_report/views/IncidentReportView";
+
+import ResidentIncidentReportList from "./residence/incident_report/views/ResidentIncidentReportList";
+import ResidentIncidentReport from "./residence/incident_report/views/ResidentIncidentReportView";
+import ResidentIncidentReportCreate from "./residence/incident_report/views/ResidentIncidentReportCreate";
+import BarangayReports from "./admin/barangay_reports";
 
 const Portal = () => {
   return (
@@ -52,6 +59,8 @@ const Routes = () => {
 
     switch (type) {
       case "admin":
+        return "/portal/admin";
+      case "Super_Admin":
         return "/portal/admin";
       case "residence":
         return "/portal/residence";
@@ -75,9 +84,19 @@ const Routes = () => {
                     <Route path="create" element={<IssuanceCreate />}></Route>
                     <Route path=":id" element={<IssuanceView />} />
                   </Route>
+                  <Route path="incident_report">
+                    <Route index element={<ResidentIncidentReportList />} />
+                    <Route path=":id" element={<ResidentIncidentReport />} />
+                    <Route
+                      path="create"
+                      element={<ResidentIncidentReportCreate />}
+                    />
+
+                    {/* <Route path="edit/:id" element={<BlotterReportEdit />} /> */}
+                  </Route>
                 </Route>
               </>
-            ) : getUser() === "admin" ? (
+            ) : getUser() === "admin" || getUser() === "Super_Admin" ? (
               <Route path="admin" element={<SectionRoute />}>
                 <Route index element={<Dashboard />} />
                 <Route path="announcements" element={<SectionRoute />}>
@@ -98,6 +117,11 @@ const Routes = () => {
                   <Route index element={<BlotterList />} />
                   <Route path="create" element={<BlotterReportCreate />} />
                   <Route path=":id" element={<BlotterReportView />} />
+                  <Route path="edit/:id" element={<BlotterReportEdit />} />
+                </Route>
+                <Route path="incident_report">
+                  <Route index element={<IncidentReportList />} />
+                  <Route path=":id" element={<IncidentReportView />} />
                   <Route path="edit/:id" element={<BlotterReportEdit />} />
                 </Route>
                 <Route path="officials_management">
@@ -122,6 +146,9 @@ const Routes = () => {
                 <Route path="content_settings">
                   <Route index element={<ContentSettings />} />
                   {/* <Route path="create" element={<h1>Test details</h1>} /> */}
+                </Route>
+                <Route path="barangay_report">
+                  <Route index element={<BarangayReports />} />
                 </Route>
               </Route>
             ) : null}

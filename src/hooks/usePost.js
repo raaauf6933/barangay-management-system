@@ -25,7 +25,7 @@ const usePost = (props) => {
       headers: {
         "x-auth-token": token,
       },
-      method: "POST",
+      method: params?.method ? params?.method : "POST",
     };
 
     try {

@@ -10,26 +10,21 @@ export const columns = [
     sorter: (a, b) => parseInt(b.id) - parseInt(a.id),
     sortDirections: ["descend"],
   },
+  // {
+  //   title: "Claimant",
+  //   dataIndex: "claimant",
+  //   key: "claimant",
+  // render: (text) => <span className="table-body">{text}</span>,
+  // sorter: (a, b) => a.resident.localeCompare(b.resident),
+  // sortDirections: ["descend"],
+  // },
   {
-    title: "Compliant",
-    dataIndex: "compliant",
-    key: "compliant",
-    // render: (text) => <span className="table-body">{text}</span>,
-    // sorter: (a, b) => a.resident.localeCompare(b.resident),
-    // sortDirections: ["descend"],
-  },
-  {
-    title: "Respondent",
-    key: "respondent",
-    dataIndex: "respondent",
+    title: "Subject",
+    key: "subject",
+    dataIndex: "subject",
     // render: (status) => (
     //   <>{<Status type="DEFAULT" status={status ? "ACTIVE" : "INACTIVE"} />}</>
     // ),
-  },
-  {
-    title: "In-Charge",
-    key: "incharge",
-    dataIndex: "incharge",
   },
   {
     title: "Created At",
@@ -46,7 +41,7 @@ export const columns = [
           <Status
             type="DEFAULT"
             status={status}
-            text={status === "PENDING" ? "PENDING / ONGOING" : null}
+            text={status === "PENDING" ? "PENDING / REVIEWING" : null}
           />
         }
       </>
@@ -55,15 +50,15 @@ export const columns = [
 ];
 
 export const parseResponse = (response) => {
-  return response?.data?.blotter
+  return response?.data?.incident_reports
     .map((e) => ({
       key: e.id,
       id: e.id,
-      compliant: `${e?.complainant}`,
-      respondent: e.respondent,
-      incharge: e.in_charge
-        ? `${e?.Official?.first_name} ${e?.Official?.last_name}`
-        : e?.other_incharge,
+      // claimant: e?.claimant
+      //   ? `${e?.Resident?.first_name} ${e?.Resident?.last_name}`
+      //   : `${e?.other_claimant}`,
+      subject: e?.subject,
+
       createdAt: moment(e.createdAt).tz("Asia/Manila").format("LLL"),
       status: e.status,
     }))

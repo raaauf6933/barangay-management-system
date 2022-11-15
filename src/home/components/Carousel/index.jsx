@@ -13,8 +13,8 @@ const CarouselComponent = () => {
     // textAlign: "center",
     // background: "#364d79",
     width: "100%",
-    height: "600px",
-    maxHeight: "600px",
+    height: "100%",
+    // maxHeight: "600px",
   };
 
   const { response } = useFetch({
@@ -32,9 +32,10 @@ const CarouselComponent = () => {
               src={item.url}
               wrapperStyle={{
                 width: "100%",
-                height: "600px",
-                maxHeight: "600px",
+                height: "100%",
+                // maxHeight: "600px",
               }}
+              preview={false}
             />
           </div>
         ))
@@ -44,8 +45,9 @@ const CarouselComponent = () => {
             src={defaultBg}
             wrapperStyle={{
               width: "100%",
-              height: "600px",
+              height: "100%",
             }}
+            preview={false}
           />
         </div>
       )}

@@ -6,6 +6,7 @@ import { GET_MY_PROFILE, UPDATE_PROFILE } from "./api";
 import { useEffect } from "react";
 import usePost from "../../hooks/usePost";
 import useNotify from "../hooks/useNotify";
+import { useAuth } from "../context/auth/context";
 
 const MyProfile = () => {
   const [form] = Form.useForm();
@@ -14,7 +15,7 @@ const MyProfile = () => {
   const { response } = useFetch({
     url: GET_MY_PROFILE,
   });
-
+  const { logout } = useAuth();
   const user = response?.data?.user;
 
   const initialValue = {
@@ -30,6 +31,8 @@ const MyProfile = () => {
     onComplete: () => {
       form.setFieldsValue(initialValue);
       notify("success", "Profile successfully updated!");
+      notify("success", "Session Expired");
+      logout();
     },
     onError: (e) => {
       notify("error", e?.response?.data?.message);
@@ -44,6 +47,9 @@ const MyProfile = () => {
     updateProfile({
       url: UPDATE_PROFILE,
       data: {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
         current_password: formData.current_password,
         new_password: formData.new_password,
       },
@@ -73,31 +79,31 @@ const MyProfile = () => {
                   label={<span className="form-label">First Name</span>}
                   name="first_name"
                   labelCol={{ span: 24 }}
-                  //   rules={[
-                  //     { required: true, message: "This field is required" },
-                  //   ]}
+                  rules={[
+                    { required: true, message: "This field is required" },
+                  ]}
                 >
-                  <Input size="large" disabled />
+                  <Input size="large" />
                 </Form.Item>
                 <Form.Item
                   label={<span className="form-label">Last Name</span>}
                   name="last_name"
                   labelCol={{ span: 24 }}
-                  //   rules={[
-                  //     { required: true, message: "This field is required" },
-                  //   ]}
+                  rules={[
+                    { required: true, message: "This field is required" },
+                  ]}
                 >
-                  <Input size="large" disabled />
+                  <Input size="large" />
                 </Form.Item>
                 <Form.Item
                   label={<span className="form-label">Email</span>}
                   name="email"
                   labelCol={{ span: 24 }}
-                  //   rules={[
-                  //     { required: true, message: "This field is required" },
-                  //   ]}
+                  rules={[
+                    { required: true, message: "This field is required" },
+                  ]}
                 >
-                  <Input size="large" disabled />
+                  <Input size="large" />
                 </Form.Item>
                 <Form.Item
                   label={<span className="form-label">Current Password</span>}
