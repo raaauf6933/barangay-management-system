@@ -3,7 +3,7 @@
 import moment from "moment-timezone";
 
 const BarangayClearanceTemplate = (params) => {
-  const { first_name, last_name, age, address } = params;
+  const { first_name, last_name, age, address, purpose } = params;
 
   return {
     // info: {
@@ -89,7 +89,7 @@ const BarangayClearanceTemplate = (params) => {
                     preserveLeadingSpaces: true,
                   },
                   {
-                    text: `${first_name} n ${last_name},`,
+                    text: `${first_name} ${last_name},`,
                     bold: true,
                     lineHeight: 1.6,
                     decoration: "underline",
@@ -144,9 +144,9 @@ const BarangayClearanceTemplate = (params) => {
                         bold: true,
                       },
                       {
-                        text: " _____ \n\n",
+                        text: `${purpose} \n\n`,
                         bold: true,
-                        // decoration: "underline",
+                        decoration: "underline",
                       },
                     ],
 

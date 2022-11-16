@@ -37,7 +37,7 @@ const ResidentsList = () => {
           columns={columns}
           dataSource={data}
           loading={loading}
-          searchColumns={["name"]}
+          searchColumns={["name", "house_no", "street_address", "apartment"]}
           // pagination={{
           //   showTotal: (test) => {
           //     console.log(test);

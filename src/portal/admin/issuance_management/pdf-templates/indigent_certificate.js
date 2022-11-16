@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
 
 const IndigentCertificate = (params) => {
-  const { first_name, last_name, age, address } = params;
+  const { first_name, last_name, age, address, purpose } = params;
 
   return {
     // info: {
@@ -149,7 +149,7 @@ const IndigentCertificate = (params) => {
                         bold: true,
                       },
                       {
-                        text: " _____ \n\n",
+                        text: `${purpose} \n\n`,
                         bold: true,
                         decoration: "underline",
                       },

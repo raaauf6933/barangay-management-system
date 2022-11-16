@@ -50,6 +50,10 @@ export const AuthContextProvider = ({ children }) => {
     if (decoded_token.role === "Resident") {
       return "residence";
     }
+
+    if (decoded_token.role === "Super_Admin") {
+      return "Super_Admin";
+    }
   };
 
   return (
@@ -66,7 +70,9 @@ export const useAuth = () => {
 
   const hasNavPermission = (navPermission) => {
     const getuser =
-      getUser() === "admin"
+      getUser() === "Super_Admin"
+        ? "SUPER_ADMIN"
+        : getUser() === "admin"
         ? "ADMIN"
         : getUser() === "residence"
         ? "RESIDENT"

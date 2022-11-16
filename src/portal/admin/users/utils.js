@@ -19,12 +19,12 @@ export const columns = [
     // sorter: (a, b) => a.resident.localeCompare(b.resident),
     // sortDirections: ["descend"],
   },
-  {
-    title: "Role",
-    key: "role",
-    dataIndex: "role",
-    render: (text) => <Tag color="green">{text}</Tag>,
-  },
+  // {
+  //   title: "Role",
+  //   key: "role",
+  //   dataIndex: "role",
+  //   render: (text) => <Tag color="green">{text}</Tag>,
+  // },
   {
     title: "Email",
     key: "email",
@@ -57,7 +57,7 @@ export const parseResponse = (response) => {
       key: e.id,
       id: e.id,
       name: `${e.first_name} ${e.last_name}`,
-      role: e.Role.name,
+      // role: e.Role.name,
       email: e.email,
       createdAt: e.createdAt,
       status: e.status,

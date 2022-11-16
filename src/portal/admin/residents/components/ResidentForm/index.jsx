@@ -19,6 +19,9 @@ const ResidentForm = (props) => {
     birth_date: null || data?.birth_date,
     email: null || data?.email,
     contact_number: null || data?.contact_number,
+    house_no: null || data?.house_no,
+    street_address: null || data?.street_address,
+    apartment: null || data?.apartment,
     address: null || data?.address,
     civil_status: null || data?.civil_status,
     citizenship: data?.citizenship || "Filipino",
@@ -123,12 +126,45 @@ const ResidentForm = (props) => {
               />
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
             <Form.Item
-              label={<span className="form-label">Address</span>}
-              name="address"
+              label={
+                <span className="form-label">House No. , Apartment No. </span>
+              }
+              name="house_no"
               labelCol={{ span: 24 }}
               rules={[{ required: true, message: "This field is required" }]}
+            >
+              <Input
+                size="large"
+                placeholder="Enter House No. , Apartment No."
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+            <Form.Item
+              label={<span className="form-label">Street Name</span>}
+              name="street_address"
+              labelCol={{ span: 24 }}
+              rules={[{ required: true, message: "This field is required" }]}
+            >
+              <Input size="large" placeholder="Enter Street" />
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+            <Form.Item
+              label={<span className="form-label">Apartment</span>}
+              name="apartment"
+              labelCol={{ span: 24 }}
+            >
+              <Input size="large" placeholder="Enter Apartment" />
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+            <Form.Item
+              label={<span className="form-label">Other Address</span>}
+              name="address"
+              labelCol={{ span: 24 }}
             >
               <Input size="large" placeholder="Enter Address" />
             </Form.Item>

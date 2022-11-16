@@ -87,7 +87,9 @@ const BlotterReportView = () => {
             fontWeight: 600,
           }}
         >
-          {blotter_data?.in_charge}{" "}
+          {blotter_data?.in_charge
+            ? `${blotter_data?.Official?.first_name} ${blotter_data?.Official?.last_name}`
+            : blotter_data?.other_incharge}{" "}
         </Descriptions.Item>
         <Descriptions.Item
           label="Created At"

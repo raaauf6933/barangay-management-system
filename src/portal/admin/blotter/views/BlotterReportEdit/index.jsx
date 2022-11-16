@@ -5,6 +5,7 @@ import useFetch from "../../../../../hooks/useFetch";
 import usePost from "../../../../../hooks/usePost";
 import useNotify from "../../../../hooks/useNotify";
 import { GET_RESIDENTS } from "../../../issuance_management/api";
+import { GET_OFFICIALS } from "../../../officials/api";
 import { EDIT_BLOTTER_REPORT, GET_BLOTTER_REPORT } from "../../api";
 import BlotterForm from "../../components/BlotterForm";
 import { BlotterDetailssUrl } from "../../url";
@@ -12,6 +13,7 @@ import { BlotterDetailssUrl } from "../../url";
 const BlotterReportEdit = () => {
   const { id } = useParams();
   const [form] = Form.useForm();
+  const incharge_value = Form.useWatch(["incharge"], form);
   const navigate = useNavigate();
   const notify = useNotify();
 
@@ -30,6 +32,15 @@ const BlotterReportEdit = () => {
 
   const residents = response?.data?.residents;
 
+  const { response: responseOfficials, refetch: refetchOfficials } = useFetch({
+    url: GET_OFFICIALS,
+    params: {
+      status: true,
+    },
+  });
+
+  const officials = responseOfficials?.data?.officials;
+
   const [editBlotterReport] = usePost({
     onComplete: (e) => {
       console.log(e);
@@ -46,7 +57,9 @@ const BlotterReportEdit = () => {
     complainant: data?.complainant,
     respondent: data?.respondent,
     statement: data?.statement,
-    incharge: data?.in_charge,
+    incharge: data?.other_incharge ? "OTHER" : parseInt(data?.in_charge),
+    incharge_label: `${data?.Official?.first_name} ${data?.Official?.last_name}`,
+    other_incharge: data?.other_incharge,
     respondent_statement: data?.respondent_statement,
     resolution: data?.resolution,
     status: data?.status,
@@ -75,6 +88,9 @@ const BlotterReportEdit = () => {
             residents={residents}
             refetchResidents={refetchResidents}
             navigate={navigate}
+            officials={officials}
+            refetchOfficials={refetchOfficials}
+            incharge_value={incharge_value}
           />
         </Form>
       </Card>
