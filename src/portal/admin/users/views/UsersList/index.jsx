@@ -100,14 +100,14 @@ const User = () => {
     <>
       <Card>
         {" "}
-        <PageHeader title="Admin">
+        <PageHeader title="Non-Admins">
           <Button
             type="primary"
             onClick={() => openModal("createUser")}
             icon={<PlusOutlined />}
             mobileView
           >
-            <b>Create User</b>
+            <b>Create Non-Admin</b>
           </Button>
         </PageHeader>
         <div className="responsive-table">
