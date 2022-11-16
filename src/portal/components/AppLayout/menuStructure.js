@@ -136,7 +136,7 @@ export const createMenuStructure = () => {
     {
       key: "/portal/admin/users",
       icon: <UserOutlined />,
-      label: "Non-Admin Authentication",
+      label: "Non-Admin Management",
       permission: [PermissionEnum.SUPER_ADMIN],
       url: "/portal/admin/users",
     },
